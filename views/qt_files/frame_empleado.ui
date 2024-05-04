@@ -21,7 +21,7 @@
        <property name="maximumSize">
         <size>
          <width>300</width>
-         <height>16777215</height>
+         <height>26</height>
         </size>
        </property>
       </widget>
@@ -45,28 +45,12 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="3">
-      <widget class="QFrame" name="frame_2">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-      </widget>
-     </item>
      <item row="7" column="2">
       <widget class="QLineEdit" name="lineEdit_6">
        <property name="maximumSize">
         <size>
          <width>300</width>
-         <height>16777215</height>
+         <height>26</height>
         </size>
        </property>
       </widget>
@@ -95,7 +79,7 @@
        <property name="maximumSize">
         <size>
          <width>300</width>
-         <height>16777215</height>
+         <height>26</height>
         </size>
        </property>
       </widget>
@@ -124,7 +108,7 @@
        <property name="maximumSize">
         <size>
          <width>300</width>
-         <height>16777215</height>
+         <height>26</height>
         </size>
        </property>
       </widget>
@@ -134,7 +118,7 @@
        <property name="maximumSize">
         <size>
          <width>300</width>
-         <height>16777215</height>
+         <height>26</height>
         </size>
        </property>
       </widget>
@@ -196,7 +180,27 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
+     <item row="0" column="2">
+      <widget class="QLineEdit" name="lineEdit_7">
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>26</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="2">
+      <widget class="QLineEdit" name="lineEdit_2">
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>26</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
       <widget class="QFrame" name="frame">
        <property name="maximumSize">
         <size>
@@ -212,13 +216,38 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="2">
-      <widget class="QLineEdit" name="lineEdit_2">
+     <item row="0" column="1">
+      <widget class="QLabel" name="label_7">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="maximumSize">
         <size>
          <width>300</width>
          <height>16777215</height>
         </size>
+       </property>
+       <property name="text">
+        <string>Código</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QFrame" name="frame_2">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
        </property>
       </widget>
      </item>
@@ -240,6 +269,9 @@
          <height>16777215</height>
         </size>
        </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
        <property name="text">
         <string>Crear</string>
        </property>
@@ -259,6 +291,9 @@
          <height>16777215</height>
         </size>
        </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
        <property name="text">
         <string>Buscar</string>
        </property>
@@ -272,6 +307,9 @@
          <height>16777215</height>
         </size>
        </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
        <property name="text">
         <string>Actualizar</string>
        </property>
@@ -284,6 +322,9 @@
          <width>150</width>
          <height>16777215</height>
         </size>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="text">
         <string>Eliminar</string>

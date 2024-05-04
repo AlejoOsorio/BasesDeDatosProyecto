@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>588</height>
+   </rect>
+  </property>
+  <property name="sizeIncrement">
+   <size>
+    <width>500</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="cursor">
+       <cursorShape>ArrowCursor</cursorShape>
+      </property>
+      <property name="mouseTracking">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+	border: 1px solid rgb(131, 131, 131);
+	border-radius: 13px;
+	padding-left: 10px;
+	padding-right: 10px
+}
+QLineEdit:focus {
+	border: 1px solid rgb(103, 164, 255)
+}
+QPushButton {
+	border: 1px solid rgb(131, 131, 131);
+	border-radius: 12px;
+	background: rgb(215, 222, 255);
+	height: 24px;
+	cursor-shape: PointingHandCursor
+}
+QPushButton:hover {
+	color: green;
+	background-color: rgb(255, 236, 32);
+	cursor: pointer
+}
+QPushButton:pressed {
+	color: green;
+	background-color: rgb(12, 57, 255);
+	cursor: pointer
+}</string>
+      </property>
+      <widget class="QWidget" name="page">
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>320</x>
+          <y>10</y>
+          <width>101</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Ventana Principal</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuReportes">
+    <property name="title">
+     <string>Reportes</string>
+    </property>
+    <addaction name="actionListar_sucursales"/>
+    <addaction name="actionInforme_empleados"/>
+   </widget>
+   <widget class="QMenu" name="menuUtilidades">
+    <property name="title">
+     <string>Utilidades</string>
+    </property>
+    <addaction name="actionUsuario"/>
+    <addaction name="actionBitacora"/>
+    <addaction name="actionCallculadora"/>
+    <addaction name="actionFecha_y_hora_actual"/>
+   </widget>
+   <widget class="QMenu" name="menuEntidades">
+    <property name="title">
+     <string>Entidades</string>
+    </property>
+    <addaction name="actionDepartamento"/>
+    <addaction name="actionTipo_Municipio"/>
+    <addaction name="actionMunicipio"/>
+    <addaction name="actionSucursal"/>
+    <addaction name="actionCargo"/>
+    <addaction name="actionProfesion"/>
+    <addaction name="actionEmpleado"/>
+    <addaction name="actionSalir"/>
+   </widget>
+   <widget class="QMenu" name="menuTransacciones">
+    <property name="title">
+     <string>Transacciones</string>
+    </property>
+    <addaction name="actionContrato"/>
+   </widget>
+   <widget class="QMenu" name="menuAyudas">
+    <property name="title">
+     <string>Ayudas</string>
+    </property>
+    <addaction name="actionAyudas_de_la_aplicaci_n"/>
+    <addaction name="actionAcerca_de"/>
+   </widget>
+   <addaction name="menuEntidades"/>
+   <addaction name="menuTransacciones"/>
+   <addaction name="menuReportes"/>
+   <addaction name="menuUtilidades"/>
+   <addaction name="menuAyudas"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionSucursal">
+   <property name="text">
+    <string>Sucursal</string>
+   </property>
+  </action>
+  <action name="actionEmpleado">
+   <property name="text">
+    <string>Empleado</string>
+   </property>
+  </action>
+  <action name="actionMunicipio">
+   <property name="text">
+    <string>Municipio</string>
+   </property>
+  </action>
+  <action name="actionCargo">
+   <property name="text">
+    <string>Cargo</string>
+   </property>
+  </action>
+  <action name="actionUsuario">
+   <property name="text">
+    <string>Usuario</string>
+   </property>
+  </action>
+  <action name="actionSalir">
+   <property name="text">
+    <string>Salir</string>
+   </property>
+  </action>
+  <action name="actionProfesion">
+   <property name="text">
+    <string>Profesion</string>
+   </property>
+  </action>
+  <action name="actionContrato">
+   <property name="text">
+    <string>Contrato</string>
+   </property>
+  </action>
+  <action name="actionDepartamento">
+   <property name="text">
+    <string>Departamento</string>
+   </property>
+  </action>
+  <action name="actionTipo_Municipio">
+   <property name="text">
+    <string>Tipo Municipio</string>
+   </property>
+  </action>
+  <action name="actionListar_sucursales">
+   <property name="text">
+    <string>Listar sucursales</string>
+   </property>
+  </action>
+  <action name="actionInforme_empleados">
+   <property name="text">
+    <string>Informe empleados</string>
+   </property>
+  </action>
+  <action name="actionBitacora">
+   <property name="text">
+    <string>Bitácora de usuarios</string>
+   </property>
+  </action>
+  <action name="actionCallculadora">
+   <property name="text">
+    <string>Callculadora</string>
+   </property>
+  </action>
+  <action name="actionFecha_y_hora_actual">
+   <property name="text">
+    <string>Fecha y hora actual</string>
+   </property>
+  </action>
+  <action name="actionAyudas_de_la_aplicaci_n">
+   <property name="text">
+    <string>Ayudas de la aplicación</string>
+   </property>
+  </action>
+  <action name="actionAcerca_de">
+   <property name="text">
+    <string>Acerca de...</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

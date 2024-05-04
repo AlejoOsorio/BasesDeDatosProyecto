@@ -6,61 +6,16 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>591</width>
-    <height>402</height>
+    <width>590</width>
+    <height>399</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Frame2</string>
+   <string>Frame</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="1" column="3">
-      <widget class="QLineEdit" name="editNombre">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>300</width>
-         <height>26</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="3">
-      <widget class="QLineEdit" name="editCodigo">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>300</width>
-         <height>26</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="1">
-      <widget class="QLabel" name="label_6">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>300</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Presupuesto anual</string>
-       </property>
-      </widget>
-     </item>
      <item row="2" column="1">
       <widget class="QLabel" name="label">
        <property name="sizePolicy">
@@ -76,17 +31,20 @@
         </size>
        </property>
        <property name="text">
-        <string>Departamento</string>
+        <string>Cantidad de poblacion</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="0">
-      <widget class="QFrame" name="frame_2">
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
+     <item row="2" column="3">
+      <widget class="QLineEdit" name="lineEdit">
+       <property name="enabled">
+        <bool>true</bool>
        </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>26</height>
+        </size>
        </property>
       </widget>
      </item>
@@ -109,84 +67,26 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="1">
-      <widget class="QLabel" name="label_3">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
+     <item row="0" column="3">
+      <widget class="QLineEdit" name="lineEdit_5">
+       <property name="enabled">
+        <bool>true</bool>
        </property>
-       <property name="maximumSize">
-        <size>
-         <width>300</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Director</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="3">
-      <widget class="QLineEdit" name="lineEdit_6">
        <property name="maximumSize">
         <size>
          <width>300</width>
          <height>26</height>
         </size>
        </property>
-       <property name="cursor">
-        <cursorShape>PointingHandCursor</cursorShape>
-       </property>
       </widget>
      </item>
-     <item row="3" column="1">
-      <widget class="QLabel" name="label_2">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>300</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Municipio</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="4">
+     <item row="2" column="4">
       <widget class="QFrame" name="frame">
        <property name="frameShape">
         <enum>QFrame::StyledPanel</enum>
        </property>
        <property name="frameShadow">
         <enum>QFrame::Raised</enum>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="3">
-      <widget class="QComboBox" name="comboBox">
-       <property name="maximumSize">
-        <size>
-         <width>300</width>
-         <height>26</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="3">
-      <widget class="QComboBox" name="comboBox_2">
-       <property name="maximumSize">
-        <size>
-         <width>300</width>
-         <height>26</height>
-        </size>
        </property>
       </widget>
      </item>
@@ -209,8 +109,50 @@
        </property>
       </widget>
      </item>
+     <item row="1" column="3">
+      <widget class="QLineEdit" name="lineEdit_4">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>26</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLabel" name="label_2">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Tipo de municipio</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QFrame" name="frame_2">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+      </widget>
+     </item>
      <item row="3" column="3">
-      <widget class="QComboBox" name="comboBox_3">
+      <widget class="QComboBox" name="comboBox">
        <property name="maximumSize">
         <size>
          <width>300</width>
@@ -292,12 +234,10 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>editCodigo</tabstop>
-  <tabstop>editNombre</tabstop>
-  <tabstop>comboBox_2</tabstop>
-  <tabstop>comboBox_3</tabstop>
+  <tabstop>lineEdit_5</tabstop>
+  <tabstop>lineEdit_4</tabstop>
+  <tabstop>lineEdit</tabstop>
   <tabstop>comboBox</tabstop>
-  <tabstop>lineEdit_6</tabstop>
   <tabstop>crear</tabstop>
   <tabstop>buscar</tabstop>
   <tabstop>actualizar</tabstop>
