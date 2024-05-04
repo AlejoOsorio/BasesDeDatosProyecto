@@ -1,5 +1,6 @@
 class Empleado:
-    def __init__(self, nombre, apellido, cedula, direccion, telefono, cargo, profesion):
+    def __init__(self, codigo, nombre, apellido, cedula, direccion, telefono, cargo, profesion):
+        self.codigo = codigo
         self.nombre = nombre
         self.apellido = apellido
         self.cedula = cedula
