@@ -1,8 +1,11 @@
+import datetime
+
+
 class Contrato:
-    def __init__(self, codigo, fecha_inicio, fecha_terminacion, fecha_contrato, sucursal, cargo):
-        self.codigo = codigo
-        self.fecha_inicio = fecha_inicio
-        self.fecha_terminacion = fecha_terminacion
-        self.fecha_contrato = fecha_contrato
+    def __init__(self, codigoContrato: str, fechaInicioContrato: datetime, fechaTerminacionContrato: datetime, empleado: str, sucursal: str, cargo:str):
+        self.codigoContrato = codigoContrato
+        self.fechaInicioContrato = fechaInicioContrato
+        self.fechaTerminacionContrato = fechaTerminacionContrato
+        self.empleado = empleado
         self.sucursal = sucursal
         self.cargo = cargo

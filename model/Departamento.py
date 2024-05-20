@@ -1,5 +1,5 @@
 class Departamento:
-    def __init__(self, codigo, nombre, poblacion):
-        self.codigo = codigo
-        self.nombre = nombre
-        self.poblacion = poblacion
+    def __init__(self, codigoDepartamento: str, nombreDepartamento: str, poblacionDepartamento: int):
+        self.codigoDepartamento = codigoDepartamento
+        self.nombreDepartamento = nombreDepartamento
+        self.poblacionDepartamento = poblacionDepartamento

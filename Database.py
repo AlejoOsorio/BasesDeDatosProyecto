@@ -17,7 +17,7 @@ def abrirConexion():
         sys.exit(1)
 
     # Get Cursor
-    return conexion.cursor()
+    return conexion
 
 
 def cerrarConexion(conexion):
