@@ -14,36 +14,42 @@ def findById(codigoContrato: str):
     if resultado:
         contrato = Contrato(
             codigoContrato=resultado[0],
-            fechaInicioContrato=resultado[1],
-            fechaTerminacionContrato=resultado[2],
-            empleado=resultado[3],
-            sucursal=resultado[4],
-            cargo=resultado[5]
+            fechaContrato=resultado[1],
+            fechaInicioContrato=resultado[2],
+            fechaTerminacionContrato=resultado[3],
+            empleado=resultado[4],
+            sucursal=resultado[5],
+            cargo=resultado[6]
         )
     Database.cerrarConexion(conexion)
     return contrato
+
 
 def save(contrato: Contrato):
     conexion = Database.abrirConexion()
     cursor = conexion.cursor()
     cursor.execute(
-        u"INSERT INTO contratos (codigoContrato, fechaInicioContrato, fechaTerminacionContrato, empleado, sucursal, cargo) VALUES (?,?,?,?,?,?)",
-        (contrato.codigoContrato, contrato.fechaInicioContrato, contrato.fechaTerminacionContrato, contrato.empleado, contrato.sucursal, contrato.cargo))
+        u"INSERT INTO contratos (codigoContrato, fechaContrato, fechaInicioContrato, fechaTerminacionContrato, empleado, sucursal, cargo) VALUES (?,?,?,?,?,?,?)",
+        (contrato.codigoContrato, contrato.fechaInicioContrato, contrato.fechaTerminacionContrato, contrato.empleado,
+         contrato.sucursal, contrato.cargo))
     conexion.commit()
     Database.cerrarConexion(conexion)
+
 
 def update(contrato: Contrato):
     conexion = Database.abrirConexion()
     cursor = conexion.cursor()
     cursor.execute("""
         UPDATE contratos 
-        SET fechaInicioContrato = ?, 
+        SET fechaContrato = ?
+            fechaInicioContrato = ?, 
             fechaTerminacionContrato = ?  ,
             empleado = ?,
             sucursal = ?,
             cargo = ?
         WHERE codigoContrato = ?
     """, (
+        contrato.fechaContrato,
         contrato.fechaInicioContrato,
         contrato.fechaTerminacionContrato,
         contrato.empleado,
@@ -54,12 +60,14 @@ def update(contrato: Contrato):
     conexion.commit()
     Database.cerrarConexion(conexion)
 
+
 def delete(codigoContrato: str):
     conexion = Database.abrirConexion()
     cursor = conexion.cursor()
     cursor.execute(u"DELETE FROM contratos WHERE codigoContrato = ?", (codigoContrato,))
     conexion.commit()
     Database.cerrarConexion(conexion)
+
 
 def findAll():
     conexion = Database.abrirConexion()
@@ -71,11 +79,12 @@ def findAll():
     for datos in resultado:
         contrato = Contrato(
             codigoContrato=datos[0],
-            fechaInicioContrato=datos[1],
-            fechaTerminacionContrato=datos[2],
-            empleado=datos[3],
-            sucursal=datos[4],
-            cargo=datos[5])
+            fechaContrato=datos[1],
+            fechaInicioContrato=datos[2],
+            fechaTerminacionContrato=datos[3],
+            empleado=datos[4],
+            sucursal=datos[5],
+            cargo=datos[6])
         listaContratos.append(contrato)
 
     return listaContratos
