@@ -15,6 +15,22 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
+    <widget class="QLabel" name="label">
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+	font-size: 26px;
+	font-weight: bold;
+	color: #333;
+	text-align: center;
+	qproperty-alignment: AlignCenter;
+}</string>
+     </property>
+     <property name="text">
+      <string>Login</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <layout class="QGridLayout" name="gridLayout_2">
      <item row="1" column="0">
       <widget class="QFrame" name="relleno_izquierdo_2">
@@ -56,7 +72,7 @@
       </widget>
      </item>
      <item row="1" column="3">
-      <widget class="QLineEdit" name="lineEdit_6">
+      <widget class="QLineEdit" name="tfEmail">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -83,12 +99,12 @@
         </size>
        </property>
        <property name="text">
-        <string>Login</string>
+        <string>Email</string>
        </property>
       </widget>
      </item>
      <item row="2" column="3">
-      <widget class="QLineEdit" name="lineEdit_7">
+      <widget class="QLineEdit" name="tfPassword">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -111,7 +127,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
-      <widget class="QPushButton" name="buscar_3">
+      <widget class="QPushButton" name="btnIniciarSesion">
        <property name="maximumSize">
         <size>
          <width>150</width>
@@ -127,7 +143,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="actualizar_3">
+      <widget class="QPushButton" name="btnCancelar">
        <property name="maximumSize">
         <size>
          <width>150</width>

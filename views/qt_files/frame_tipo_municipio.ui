@@ -15,6 +15,22 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
+    <widget class="QLabel" name="label_2">
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+	font-size: 26px;
+	font-weight: bold;
+	color: #333;
+	text-align: center;
+	qproperty-alignment: AlignCenter;
+}</string>
+     </property>
+     <property name="text">
+      <string>Tipo Municipio</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <layout class="QGridLayout" name="gridLayout">
      <item row="0" column="1">
       <widget class="QLabel" name="label_7">
@@ -35,32 +51,13 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="2">
-      <widget class="QLineEdit" name="lineEdit_7">
+     <item row="2" column="2">
+      <widget class="QLineEdit" name="tfNombre">
        <property name="maximumSize">
         <size>
          <width>300</width>
          <height>26</height>
         </size>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QLabel" name="label">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>300</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Nombre</string>
        </property>
       </widget>
      </item>
@@ -96,8 +93,8 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="2">
-      <widget class="QLineEdit" name="lineEdit_2">
+     <item row="0" column="2">
+      <widget class="QLineEdit" name="tfCodigo">
        <property name="maximumSize">
         <size>
          <width>300</width>
@@ -106,12 +103,31 @@
        </property>
       </widget>
      </item>
+     <item row="2" column="1">
+      <widget class="QLabel" name="label">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Nombre</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="btnCrearPrioridad">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -133,7 +149,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="btnBuscarPrioridad">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -155,7 +171,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="btnActualizarPrioridad">
        <property name="maximumSize">
         <size>
          <width>150</width>
@@ -171,7 +187,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_4">
+      <widget class="QPushButton" name="btnEliminarPrioridad">
        <property name="maximumSize">
         <size>
          <width>150</width>
@@ -190,6 +206,14 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>tfCodigo</tabstop>
+  <tabstop>tfNombre</tabstop>
+  <tabstop>btnCrearPrioridad</tabstop>
+  <tabstop>btnBuscarPrioridad</tabstop>
+  <tabstop>btnActualizarPrioridad</tabstop>
+  <tabstop>btnEliminarPrioridad</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

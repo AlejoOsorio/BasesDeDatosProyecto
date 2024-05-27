@@ -6,16 +6,22 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>590</width>
-    <height>399</height>
+    <width>800</width>
+    <height>508</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Frame</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QLabel" name="label_6">
+   <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+    <widget class="QLabel" name="label_4">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="styleSheet">
       <string notr="true">QLabel {
 	font-size: 26px;
@@ -26,45 +32,13 @@
 }</string>
      </property>
      <property name="text">
-      <string>Municipio</string>
+      <string>Usuario</string>
      </property>
     </widget>
    </item>
    <item>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="1" column="1">
-      <widget class="QLabel" name="label_4">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>300</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Nombre</string>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="3">
-      <widget class="QLineEdit" name="tfCodigo">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>300</width>
-         <height>26</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
       <widget class="QFrame" name="frame_2">
        <property name="frameShape">
         <enum>QFrame::StyledPanel</enum>
@@ -74,10 +48,10 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="label_5">
+     <item row="0" column="2">
+      <widget class="QTextEdit" name="tfEmail">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -85,25 +59,28 @@
        <property name="maximumSize">
         <size>
          <width>300</width>
-         <height>16777215</height>
+         <height>26</height>
         </size>
        </property>
-       <property name="text">
-        <string>Código</string>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QTextEdit" name="tfCodigoEmpleado">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>26</height>
+        </size>
        </property>
       </widget>
      </item>
-     <item row="2" column="4">
-      <widget class="QFrame" name="frame">
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
+     <item row="0" column="1">
       <widget class="QLabel" name="label">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
@@ -118,11 +95,27 @@
         </size>
        </property>
        <property name="text">
-        <string>Cantidad de poblacion</string>
+        <string>Email</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
+     <item row="2" column="2">
+      <widget class="QTextEdit" name="tfPassword">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>26</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
       <widget class="QLabel" name="label_2">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
@@ -137,47 +130,21 @@
         </size>
        </property>
        <property name="text">
-        <string>Tipo de municipio</string>
+        <string>Codigo Empleado</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="3">
-      <widget class="QLineEdit" name="tfNombre">
-       <property name="enabled">
-        <bool>true</bool>
+     <item row="0" column="0">
+      <widget class="QFrame" name="frame">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
        </property>
-       <property name="maximumSize">
-        <size>
-         <width>300</width>
-         <height>26</height>
-        </size>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
        </property>
       </widget>
      </item>
-     <item row="3" column="3">
-      <widget class="QComboBox" name="cbTipoMunicipio">
-       <property name="maximumSize">
-        <size>
-         <width>300</width>
-         <height>26</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="3">
-      <widget class="QLineEdit" name="tfPoblacion">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>300</width>
-         <height>26</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="1">
+     <item row="2" column="1">
       <widget class="QLabel" name="label_3">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
@@ -192,17 +159,91 @@
         </size>
        </property>
        <property name="text">
-        <string>Departamento</string>
+        <string>Password</string>
        </property>
       </widget>
      </item>
-     <item row="5" column="3">
-      <widget class="QComboBox" name="cbDepartamento">
+     <item row="3" column="1">
+      <widget class="QLabel" name="label_5">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="maximumSize">
         <size>
          <width>300</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Fecha creación</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="2">
+      <widget class="QDateEdit" name="dpFechaCreacion">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
          <height>26</height>
         </size>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::NoContextMenu</enum>
+       </property>
+       <property name="acceptDrops">
+        <bool>false</bool>
+       </property>
+       <property name="wrapping">
+        <bool>false</bool>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <property name="readOnly">
+        <bool>false</bool>
+       </property>
+       <property name="buttonSymbols">
+        <enum>QAbstractSpinBox::NoButtons</enum>
+       </property>
+       <property name="specialValueText">
+        <string/>
+       </property>
+       <property name="keyboardTracking">
+        <bool>true</bool>
+       </property>
+       <property name="showGroupSeparator" stdset="0">
+        <bool>false</bool>
+       </property>
+       <property name="currentSection">
+        <enum>QDateTimeEdit::DaySection</enum>
+       </property>
+       <property name="displayFormat">
+        <string>d/MM/yyyy</string>
+       </property>
+       <property name="calendarPopup">
+        <bool>false</bool>
+       </property>
+       <property name="currentSectionIndex">
+        <number>0</number>
+       </property>
+       <property name="timeSpec">
+        <enum>Qt::LocalTime</enum>
+       </property>
+       <property name="date">
+        <date>
+         <year>2024</year>
+         <month>1</month>
+         <day>10</day>
+        </date>
        </property>
       </widget>
      </item>
@@ -211,66 +252,54 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="btnCrearMunicipio">
+      <widget class="QPushButton" name="btnCrearUsuario">
        <property name="maximumSize">
         <size>
          <width>150</width>
          <height>16777215</height>
         </size>
        </property>
-       <property name="cursor">
-        <cursorShape>PointingHandCursor</cursorShape>
-       </property>
        <property name="text">
-        <string>Crear Municipio</string>
+        <string>Crear Usuario</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="btnBuscarMunicipio">
+      <widget class="QPushButton" name="btnBuscarUsuario">
        <property name="maximumSize">
         <size>
          <width>150</width>
          <height>16777215</height>
         </size>
        </property>
-       <property name="cursor">
-        <cursorShape>PointingHandCursor</cursorShape>
-       </property>
        <property name="text">
-        <string>Buscar Municipio</string>
+        <string>Buscar Usuario</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="btnActualizarMunicipio">
+      <widget class="QPushButton" name="btnActualizarUsuario">
        <property name="maximumSize">
         <size>
          <width>150</width>
          <height>16777215</height>
         </size>
        </property>
-       <property name="cursor">
-        <cursorShape>PointingHandCursor</cursorShape>
-       </property>
        <property name="text">
-        <string>Actualizar Municipio</string>
+        <string>Actualizar Usuairo</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="btnEliminarMunicipio">
+      <widget class="QPushButton" name="btnEliminarUsuairo">
        <property name="maximumSize">
         <size>
          <width>150</width>
          <height>16777215</height>
         </size>
        </property>
-       <property name="cursor">
-        <cursorShape>PointingHandCursor</cursorShape>
-       </property>
        <property name="text">
-        <string>Eliminar Municipio</string>
+        <string>Eliminar Usuario</string>
        </property>
       </widget>
      </item>
@@ -278,17 +307,6 @@
    </item>
   </layout>
  </widget>
- <tabstops>
-  <tabstop>tfCodigo</tabstop>
-  <tabstop>tfNombre</tabstop>
-  <tabstop>tfPoblacion</tabstop>
-  <tabstop>cbTipoMunicipio</tabstop>
-  <tabstop>cbDepartamento</tabstop>
-  <tabstop>btnCrearMunicipio</tabstop>
-  <tabstop>btnBuscarMunicipio</tabstop>
-  <tabstop>btnActualizarMunicipio</tabstop>
-  <tabstop>btnEliminarMunicipio</tabstop>
- </tabstops>
  <resources/>
  <connections/>
 </ui>

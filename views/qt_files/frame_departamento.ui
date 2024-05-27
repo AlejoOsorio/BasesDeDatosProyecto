@@ -15,9 +15,25 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
+    <widget class="QLabel" name="label_3">
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+	font-size: 26px;
+	font-weight: bold;
+	color: #333;
+	text-align: center;
+	qproperty-alignment: AlignCenter;
+}</string>
+     </property>
+     <property name="text">
+      <string>Departamento</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <layout class="QGridLayout" name="gridLayout">
      <item row="3" column="2">
-      <widget class="QLineEdit" name="lineEdit_3">
+      <widget class="QLineEdit" name="tfPoblacion">
        <property name="maximumSize">
         <size>
          <width>300</width>
@@ -46,7 +62,7 @@
       </widget>
      </item>
      <item row="0" column="2">
-      <widget class="QLineEdit" name="lineEdit_7">
+      <widget class="QLineEdit" name="tfCodigo">
        <property name="maximumSize">
         <size>
          <width>300</width>
@@ -91,7 +107,7 @@
       </widget>
      </item>
      <item row="2" column="2">
-      <widget class="QLineEdit" name="lineEdit_2">
+      <widget class="QLineEdit" name="tfNombre">
        <property name="maximumSize">
         <size>
          <width>300</width>
@@ -140,7 +156,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="btnCrearDepartamento">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -157,12 +173,12 @@
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="text">
-        <string>Crear</string>
+        <string>Crear Departamento</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="btnBuscarDepartamento">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -179,12 +195,12 @@
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="text">
-        <string>Buscar</string>
+        <string>Buscar Departamento</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="btnActualizarDepartamento">
        <property name="maximumSize">
         <size>
          <width>150</width>
@@ -195,12 +211,12 @@
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="text">
-        <string>Actualizar</string>
+        <string>Actualizar Departamento</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_4">
+      <widget class="QPushButton" name="btnEliminarDepartamento">
        <property name="maximumSize">
         <size>
          <width>150</width>
@@ -211,7 +227,7 @@
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="text">
-        <string>Eliminar</string>
+        <string>Eliminar Departamento</string>
        </property>
       </widget>
      </item>
@@ -219,6 +235,15 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>tfCodigo</tabstop>
+  <tabstop>tfNombre</tabstop>
+  <tabstop>tfPoblacion</tabstop>
+  <tabstop>btnCrearDepartamento</tabstop>
+  <tabstop>btnBuscarDepartamento</tabstop>
+  <tabstop>btnActualizarDepartamento</tabstop>
+  <tabstop>btnEliminarDepartamento</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

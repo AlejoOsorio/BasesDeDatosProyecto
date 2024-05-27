@@ -29,29 +29,19 @@ class Ui_MainWindow(object):
 "}\n"
 "QLineEdit:focus {\n"
 "    border: 1px solid rgb(103, 164, 255)\n"
-"}\n"
-"QPushButton {\n"
-"    border: 1px solid rgb(131, 131, 131);\n"
-"    border-radius: 12px;\n"
-"    background: rgb(215, 222, 255);\n"
-"    height: 24px;\n"
-"    cursor-shape: PointingHandCursor\n"
-"}\n"
-"QPushButton:hover {\n"
-"    color: green;\n"
-"    background-color: rgb(255, 236, 32);\n"
-"    cursor: pointer\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    color: green;\n"
-"    background-color: rgb(12, 57, 255);\n"
-"    cursor: pointer\n"
 "}")
         self.stackedWidget.setObjectName("stackedWidget")
         self.page = QtWidgets.QWidget()
         self.page.setObjectName("page")
         self.label = QtWidgets.QLabel(parent=self.page)
-        self.label.setGeometry(QtCore.QRect(320, 10, 101, 16))
+        self.label.setGeometry(QtCore.QRect(260, 10, 251, 71))
+        self.label.setStyleSheet("QLabel {\n"
+"    font-size: 26px;\n"
+"    font-weight: bold;\n"
+"    color: #333;\n"
+"    text-align: center;\n"
+"    qproperty-alignment: AlignCenter;\n"
+"}")
         self.label.setObjectName("label")
         self.stackedWidget.addWidget(self.page)
         self.verticalLayout.addWidget(self.stackedWidget)
@@ -69,6 +59,8 @@ class Ui_MainWindow(object):
         self.menuTransacciones.setObjectName("menuTransacciones")
         self.menuAyudas = QtWidgets.QMenu(parent=self.menubar)
         self.menuAyudas.setObjectName("menuAyudas")
+        self.menuFile = QtWidgets.QMenu(parent=self.menubar)
+        self.menuFile.setObjectName("menuFile")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -83,8 +75,6 @@ class Ui_MainWindow(object):
         self.actionCargo.setObjectName("actionCargo")
         self.actionUsuario = QtGui.QAction(parent=MainWindow)
         self.actionUsuario.setObjectName("actionUsuario")
-        self.actionSalir = QtGui.QAction(parent=MainWindow)
-        self.actionSalir.setObjectName("actionSalir")
         self.actionProfesion = QtGui.QAction(parent=MainWindow)
         self.actionProfesion.setObjectName("actionProfesion")
         self.actionContrato = QtGui.QAction(parent=MainWindow)
@@ -99,19 +89,21 @@ class Ui_MainWindow(object):
         self.actionInforme_empleados.setObjectName("actionInforme_empleados")
         self.actionBitacora = QtGui.QAction(parent=MainWindow)
         self.actionBitacora.setObjectName("actionBitacora")
-        self.actionCallculadora = QtGui.QAction(parent=MainWindow)
-        self.actionCallculadora.setObjectName("actionCallculadora")
+        self.actionCalculadora = QtGui.QAction(parent=MainWindow)
+        self.actionCalculadora.setObjectName("actionCalculadora")
         self.actionFecha_y_hora_actual = QtGui.QAction(parent=MainWindow)
         self.actionFecha_y_hora_actual.setObjectName("actionFecha_y_hora_actual")
         self.actionAyudas_de_la_aplicaci_n = QtGui.QAction(parent=MainWindow)
         self.actionAyudas_de_la_aplicaci_n.setObjectName("actionAyudas_de_la_aplicaci_n")
         self.actionAcerca_de = QtGui.QAction(parent=MainWindow)
         self.actionAcerca_de.setObjectName("actionAcerca_de")
+        self.actionVentana_Principal = QtGui.QAction(parent=MainWindow)
+        self.actionVentana_Principal.setObjectName("actionVentana_Principal")
         self.menuReportes.addAction(self.actionListar_sucursales)
         self.menuReportes.addAction(self.actionInforme_empleados)
         self.menuUtilidades.addAction(self.actionUsuario)
         self.menuUtilidades.addAction(self.actionBitacora)
-        self.menuUtilidades.addAction(self.actionCallculadora)
+        self.menuUtilidades.addAction(self.actionCalculadora)
         self.menuUtilidades.addAction(self.actionFecha_y_hora_actual)
         self.menuEntidades.addAction(self.actionDepartamento)
         self.menuEntidades.addAction(self.actionTipo_Municipio)
@@ -120,10 +112,11 @@ class Ui_MainWindow(object):
         self.menuEntidades.addAction(self.actionCargo)
         self.menuEntidades.addAction(self.actionProfesion)
         self.menuEntidades.addAction(self.actionEmpleado)
-        self.menuEntidades.addAction(self.actionSalir)
         self.menuTransacciones.addAction(self.actionContrato)
         self.menuAyudas.addAction(self.actionAyudas_de_la_aplicaci_n)
         self.menuAyudas.addAction(self.actionAcerca_de)
+        self.menuFile.addAction(self.actionVentana_Principal)
+        self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuEntidades.menuAction())
         self.menubar.addAction(self.menuTransacciones.menuAction())
         self.menubar.addAction(self.menuReportes.menuAction())
@@ -142,12 +135,12 @@ class Ui_MainWindow(object):
         self.menuEntidades.setTitle(_translate("MainWindow", "Entidades"))
         self.menuTransacciones.setTitle(_translate("MainWindow", "Transacciones"))
         self.menuAyudas.setTitle(_translate("MainWindow", "Ayudas"))
+        self.menuFile.setTitle(_translate("MainWindow", "File"))
         self.actionSucursal.setText(_translate("MainWindow", "Sucursal"))
         self.actionEmpleado.setText(_translate("MainWindow", "Empleado"))
         self.actionMunicipio.setText(_translate("MainWindow", "Municipio"))
         self.actionCargo.setText(_translate("MainWindow", "Cargo"))
         self.actionUsuario.setText(_translate("MainWindow", "Usuario"))
-        self.actionSalir.setText(_translate("MainWindow", "Salir"))
         self.actionProfesion.setText(_translate("MainWindow", "Profesion"))
         self.actionContrato.setText(_translate("MainWindow", "Contrato"))
         self.actionDepartamento.setText(_translate("MainWindow", "Departamento"))
@@ -155,7 +148,8 @@ class Ui_MainWindow(object):
         self.actionListar_sucursales.setText(_translate("MainWindow", "Listar sucursales"))
         self.actionInforme_empleados.setText(_translate("MainWindow", "Informe empleados"))
         self.actionBitacora.setText(_translate("MainWindow", "Bitácora de usuarios"))
-        self.actionCallculadora.setText(_translate("MainWindow", "Callculadora"))
+        self.actionCalculadora.setText(_translate("MainWindow", "Calculadora"))
         self.actionFecha_y_hora_actual.setText(_translate("MainWindow", "Fecha y hora actual"))
         self.actionAyudas_de_la_aplicaci_n.setText(_translate("MainWindow", "Ayudas de la aplicación"))
         self.actionAcerca_de.setText(_translate("MainWindow", "Acerca de..."))
+        self.actionVentana_Principal.setText(_translate("MainWindow", "Ventana Principal"))
