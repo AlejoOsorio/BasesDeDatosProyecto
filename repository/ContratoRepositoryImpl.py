@@ -30,7 +30,7 @@ def save(contrato: Contrato):
     cursor = conexion.cursor()
     cursor.execute(
         u"INSERT INTO contratos (codigoContrato, fechaContrato, fechaInicioContrato, fechaTerminacionContrato, empleado, sucursal, cargo) VALUES (?,?,?,?,?,?,?)",
-        (contrato.codigoContrato, contrato.fechaInicioContrato, contrato.fechaTerminacionContrato, contrato.empleado,
+        (contrato.codigoContrato, contrato.fechaContrato, contrato.fechaInicioContrato, contrato.fechaTerminacionContrato, contrato.empleado,
          contrato.sucursal, contrato.cargo))
     conexion.commit()
     Database.cerrarConexion(conexion)
