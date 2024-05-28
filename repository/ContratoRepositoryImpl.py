@@ -41,7 +41,7 @@ def update(contrato: Contrato):
     cursor = conexion.cursor()
     cursor.execute("""
         UPDATE contratos 
-        SET fechaContrato = ?
+        SET fechaContrato = ?,
             fechaInicioContrato = ?, 
             fechaTerminacionContrato = ?  ,
             empleado = ?,

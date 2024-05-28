@@ -36,5 +36,5 @@ def obtenerDepartamento(codigoDepartamento):
         raise RuntimeError("No existe un departamento con este codigo")
     return departamento
 
-def obtenerListaCargos():
+def obtenerListaDepartamentos():
     return repository.DepartamentoRepositoryImpl.findAll()
