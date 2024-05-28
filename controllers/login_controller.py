@@ -2,7 +2,7 @@ from PyQt6 import QtWidgets
 
 from controllers.main_window_controller import MainWindowController
 from model.NivelUsuario import NivelUsuario
-from model.Usuairo import Usuario
+from model.Usuario import Usuario
 from utils.utils_qt import mensaje_error
 from views.python_files.frame_login_usuario import Ui_Frame
 
