@@ -97,6 +97,15 @@ def save(empleado: Empleado):
     conexion.commit()
     Database.cerrarConexion(conexion)
 
+def saveDetalleEmpleado(codigoEmpleado: str, codigoPofesion: str):
+    conexion = Database.abrirConexion()
+    cursor = conexion.cursor()
+    cursor.execute(
+        u"INSERT INTO detalleempleadosprofesiones (empleado, profesion) VALUES (?,?)",
+        (codigoEmpleado, codigoPofesion))
+    conexion.commit()
+    Database.cerrarConexion(conexion)
+
 
 def update(empleado: Empleado):
     conexion = Database.abrirConexion()
@@ -127,6 +136,13 @@ def delete(codigoEmpleado: str):
     conexion = Database.abrirConexion()
     cursor = conexion.cursor()
     cursor.execute(u"DELETE FROM empleados WHERE codigoEmpleado = ?", (codigoEmpleado,))
+    conexion.commit()
+    Database.cerrarConexion(conexion)
+
+def deleteProfesionesEmpleado(codigoEmpleado: str):
+    conexion = Database.abrirConexion()
+    cursor = conexion.cursor()
+    cursor.execute(u"DELETE FROM detalleempleadosprofesiones WHERE empleado = ?", (codigoEmpleado,))
     conexion.commit()
     Database.cerrarConexion(conexion)
 

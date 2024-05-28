@@ -47,8 +47,6 @@ class ContratoController(QtWidgets.QWidget, Ui_Frame):
         header = self.tvEmpleados.horizontalHeader()
         header.setStretchLastSection(True)
 
-        self.btnCrearContrato.clicked.connect(self.capturar_dato_tabla)
-
         self.tvEmpleados.setSelectionBehavior(QTableView.SelectionBehavior.SelectRows)
 
     def capturar_dato_tabla(self):

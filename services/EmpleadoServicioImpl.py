@@ -21,6 +21,13 @@ def crearEmpleado(codigoEmpleado, cedulaEmpleado, nombreEmpleado, apellidoEmplea
         profesiones=[]
     ))
 
+def crearDetalleProfesion(empleado, profesion):
+    repository.EmpleadoRepositoryImpl.saveDetalleEmpleado(
+        codigoEmpleado=empleado,
+        codigoPofesion=profesion
+    )
+
+
 def actualizarEmpleado(codigoEmpleado, cedulaEmpleado, nombreEmpleado, apellidoEmpleado, direccionResidenciaEmpleado, telefonoEmpleado, correoEmpleado):
     empleado = repository.EmpleadoRepositoryImpl.findById(codigoEmpleado)
     if empleado is None:
@@ -46,6 +53,12 @@ def eliminarEmpleado(codigoEmpleado: str):
     if empleado is None:
         raise RuntimeError("No existe un empleado con este codigo")
     repository.EmpleadoRepositoryImpl.delete(codigoEmpleado)
+
+def eliminarProfesionesEmpleado(codigoEmpleado: str):
+    empleado = repository.EmpleadoRepositoryImpl.findById(codigoEmpleado)
+    if empleado is None:
+        raise RuntimeError("No existe un empleado con este codigo")
+    repository.EmpleadoRepositoryImpl.deleteProfesionesEmpleado(codigoEmpleado)
 
 def obtenerEmpleado(codigoEmpleado):
     empleado = repository.EmpleadoRepositoryImpl.findById(codigoEmpleado)

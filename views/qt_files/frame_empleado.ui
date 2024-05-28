@@ -282,12 +282,12 @@
 }</string>
          </property>
          <property name="text">
-          <string>Seleccione las profeciones del empleado:</string>
+          <string>Seleccione la profeciones del empleado:</string>
          </property>
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QListView" name="lvProfeciones">
+        <widget class="QTableView" name="tvProfesiones">
          <property name="maximumSize">
           <size>
            <width>600</width>
@@ -390,7 +390,6 @@
   <tabstop>tfEmail</tabstop>
   <tabstop>tfTelefono</tabstop>
   <tabstop>tfDireccion</tabstop>
-  <tabstop>lvProfeciones</tabstop>
   <tabstop>btnCrearEmpleado</tabstop>
   <tabstop>btnBuscarEmpleado</tabstop>
   <tabstop>btnActualizarEmpleado</tabstop>

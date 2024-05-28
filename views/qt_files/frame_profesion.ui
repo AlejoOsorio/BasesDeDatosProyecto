@@ -121,7 +121,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="crear">
+      <widget class="QPushButton" name="btnCrearProfesion">
        <property name="maximumSize">
         <size>
          <width>150</width>
@@ -137,7 +137,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="buscar">
+      <widget class="QPushButton" name="btnBuscarProfesion">
        <property name="maximumSize">
         <size>
          <width>150</width>
@@ -153,7 +153,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="actualizar">
+      <widget class="QPushButton" name="btnActualizarProfesion">
        <property name="maximumSize">
         <size>
          <width>150</width>
@@ -169,7 +169,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="eliminar">
+      <widget class="QPushButton" name="btnEliminarProfesion">
        <property name="maximumSize">
         <size>
          <width>150</width>
@@ -191,10 +191,10 @@
  <tabstops>
   <tabstop>tfCodigo</tabstop>
   <tabstop>tfNombre</tabstop>
-  <tabstop>crear</tabstop>
-  <tabstop>buscar</tabstop>
-  <tabstop>actualizar</tabstop>
-  <tabstop>eliminar</tabstop>
+  <tabstop>btnCrearProfesion</tabstop>
+  <tabstop>btnBuscarProfesion</tabstop>
+  <tabstop>btnActualizarProfesion</tabstop>
+  <tabstop>btnEliminarProfesion</tabstop>
  </tabstops>
  <resources/>
  <connections/>
