@@ -7,7 +7,7 @@ import services.CargoServicioImpl as CargoServicioImpl
 from model.Contrato import Contrato
 
 
-def crearContrato(codigoContrato: str, fechaContrato, fechaInicioContrato: datetime, fechaTerminacionContrato: datetime, empleado: str,
+def crearContrato(codigoContrato: str, fechaInicioContrato: datetime, fechaTerminacionContrato: datetime, empleado: str,
                   sucursal: str, cargo: str):
     # Validar datos
     if repository.ContratoRepositoryImpl.findById(codigoContrato):
@@ -20,7 +20,7 @@ def crearContrato(codigoContrato: str, fechaContrato, fechaInicioContrato: datet
 
     repository.ContratoRepositoryImpl.save(contrato=Contrato(
         codigoContrato=codigoContrato,
-        fechaContrato=fechaContrato,
+        fechaContrato=datetime.date.today(),
         fechaInicioContrato=fechaInicioContrato,
         fechaTerminacionContrato=fechaTerminacionContrato,
         empleado=empleado,
