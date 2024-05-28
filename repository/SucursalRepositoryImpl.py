@@ -17,7 +17,8 @@ def findById(codigoSucursal: str):
             nombreSucursal=resultado[1],
             presupuestoAnual=resultado[2],
             direccionSucursal=resultado[3],
-            municipio=resultado[4]
+            telefono=resultado[4],
+            municipio=resultado[5]
         )
     Database.cerrarConexion(conexion)
     return sucursal
@@ -26,8 +27,8 @@ def save(sucursal: Sucursal):
     conexion = Database.abrirConexion()
     cursor = conexion.cursor()
     cursor.execute(
-        u"INSERT INTO sucursales (codigoSucursal, nombreSucursal, presupuestoAnualSucursal, direccionSucursal, municipio) VALUES (?,?,?,?,?)",
-        (sucursal.codigoSucursal, sucursal.nombreSucursal, sucursal.presupuestoAnual, sucursal.direccionSucursal, sucursal.municipio))
+        u"INSERT INTO sucursales (codigoSucursal, nombreSucursal, presupuestoAnualSucursal, direccionSucursal, telefonoSucursal, municipio) VALUES (?,?,?,?,?,?)",
+        (sucursal.codigoSucursal, sucursal.nombreSucursal, sucursal.presupuestoAnual, sucursal.direccionSucursal, sucursal.telefono, sucursal.municipio))
     conexion.commit()
     Database.cerrarConexion(conexion)
 
@@ -39,12 +40,14 @@ def update(sucursal: Sucursal):
         SET nombreSucursal = ?, 
             presupuestoAnualSucursal = ?,
             direccionSucursal = ?,
+            telefonoSucursal = ?,
             municipio = ?  
         WHERE codigoSucursal = ?
     """, (
         sucursal.nombreSucursal,
         sucursal.presupuestoAnual,
         sucursal.direccionSucursal,
+        sucursal.telefono,
         sucursal.municipio,
         sucursal.codigoSucursal
     ))
@@ -71,7 +74,8 @@ def findAll():
             nombreSucursal=datos[1],
             presupuestoAnual=datos[2],
             direccionSucursal=datos[3],
-            municipio=datos[4]
+            telefono=datos[4],
+            municipio=datos[5]
         )
         listaSucursales.append(sucursal)
 

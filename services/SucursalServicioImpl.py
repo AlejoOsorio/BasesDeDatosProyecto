@@ -3,7 +3,7 @@ import services.MunicipioServicioImpl
 from model.Sucursal import Sucursal
 
 
-def crearSucursal(codigoSucursal: str, nombreSucursal: str, presupuestoAnual: float, direccionSucursal: str, municipio: str):
+def crearSucursal(codigoSucursal: str, nombreSucursal: str, presupuestoAnual: float, direccionSucursal: str, telefono: str, municipio: str):
     #Validar datos
     if repository.SucursalRepositoryImpl.findById(codigoSucursal):
         raise RuntimeError("Ya hay una sucursal con este codigo")
@@ -17,10 +17,11 @@ def crearSucursal(codigoSucursal: str, nombreSucursal: str, presupuestoAnual: fl
         nombreSucursal=nombreSucursal,
         presupuestoAnual=presupuestoAnual,
         direccionSucursal=direccionSucursal,
+        telefono=telefono,
         municipio=municipio
     ))
 
-def actualizarSucursal(codigoSucursal: str, nombreSucursal: str, presupuestoAnual: float, direccionSucursal: str, municipio: str):
+def actualizarSucursal(codigoSucursal: str, nombreSucursal: str, presupuestoAnual: float, direccionSucursal: str, telefono: str, municipio: str):
     sucursal = repository.SucursalRepositoryImpl.findById(codigoSucursal)
     if sucursal is None:
         raise RuntimeError("No existe una sucursal con este codigo")
@@ -32,12 +33,13 @@ def actualizarSucursal(codigoSucursal: str, nombreSucursal: str, presupuestoAnua
     sucursal.nombreSucursal=nombreSucursal
     sucursal.presupuestoAnual=presupuestoAnual
     sucursal.direccionSucursal=direccionSucursal
+    sucursal.telefono=telefono
     sucursal.municipio=municipio
 
     repository.SucursalRepositoryImpl.update(sucursal)
 
 def eliminarSucursal(codigoSucursal: str):
-    ##Pongo esto porque no tira error si uno pone un id que no existe
+    # Pongo esto porque no tira error si uno pone un id que no existe
     sucursal = repository.SucursalRepositoryImpl.findById(codigoSucursal)
     if sucursal is None:
         raise RuntimeError("No existe una sucursal con este codigo")

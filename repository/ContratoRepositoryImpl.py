@@ -14,12 +14,12 @@ def findById(codigoContrato: str):
     if resultado:
         contrato = Contrato(
             codigoContrato=resultado[0],
-            fechaContrato=resultado[1],
-            fechaInicioContrato=resultado[2],
-            fechaTerminacionContrato=resultado[3],
-            empleado=resultado[4],
-            sucursal=resultado[5],
-            cargo=resultado[6]
+            fechaInicioContrato=resultado[1],
+            fechaTerminacionContrato=resultado[2],
+            empleado=resultado[3],
+            sucursal=resultado[4],
+            cargo=resultado[5],
+            fechaContrato=resultado[6]
         )
     Database.cerrarConexion(conexion)
     return contrato

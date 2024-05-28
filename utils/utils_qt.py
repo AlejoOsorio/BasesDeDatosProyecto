@@ -12,6 +12,14 @@ def mensaje_error(message):
     msg.exec()
 
 
+def mensaje_informacion(message):
+    msg = QMessageBox()
+    msg.setIcon(QMessageBox.Icon.Information)
+    msg.setText(message)
+    msg.setWindowTitle("Information")
+    msg.exec()
+
+
 def mensaje_hora():
     msg = QMessageBox()
     fecha = (datetime.datetime.now())

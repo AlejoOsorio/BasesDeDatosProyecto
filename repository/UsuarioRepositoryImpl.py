@@ -1,4 +1,5 @@
 import Database
+from model.NivelUsuario import NivelUsuario
 from model.Usuario import Usuario
 
 

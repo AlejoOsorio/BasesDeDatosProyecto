@@ -127,7 +127,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="btnCrearPrioridad">
+      <widget class="QPushButton" name="btnCrearTipoMunicipio">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -149,7 +149,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="btnBuscarPrioridad">
+      <widget class="QPushButton" name="btnBuscarTipoMunicipio">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -171,7 +171,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="btnActualizarPrioridad">
+      <widget class="QPushButton" name="btnActualizarTipoMunicipio">
        <property name="maximumSize">
         <size>
          <width>150</width>
@@ -187,7 +187,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="btnEliminarPrioridad">
+      <widget class="QPushButton" name="btnEliminarTipoMunicipio">
        <property name="maximumSize">
         <size>
          <width>150</width>
@@ -209,10 +209,10 @@
  <tabstops>
   <tabstop>tfCodigo</tabstop>
   <tabstop>tfNombre</tabstop>
-  <tabstop>btnCrearPrioridad</tabstop>
-  <tabstop>btnBuscarPrioridad</tabstop>
-  <tabstop>btnActualizarPrioridad</tabstop>
-  <tabstop>btnEliminarPrioridad</tabstop>
+  <tabstop>btnCrearTipoMunicipio</tabstop>
+  <tabstop>btnBuscarTipoMunicipio</tabstop>
+  <tabstop>btnActualizarTipoMunicipio</tabstop>
+  <tabstop>btnEliminarTipoMunicipio</tabstop>
  </tabstops>
  <resources/>
  <connections/>

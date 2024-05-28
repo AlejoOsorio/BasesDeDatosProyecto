@@ -45,5 +45,11 @@ def obtenerUsuario(codigoUsuario):
         raise RuntimeError("No existe un usuario con este codigo")
     return usuario
 
+def obtenerUsuarioPorNombre(nombreUsuario):
+    usuario = repository.UsuarioRepositoryImpl.findByNombreUsuario(nombreUsuario)
+    if usuario is None:
+        raise RuntimeError("No existe un usuario con este codigo")
+    return usuario
+
 def obtenerListaUsuarios():
     return repository.UsuarioRepositoryImpl.findAll()

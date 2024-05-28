@@ -1,4 +1,5 @@
 import Database
+from model.Cargo import Cargo
 from model.Empleado import Empleado
 from model.Profesion import Profesion
 
@@ -25,7 +26,7 @@ def findById(codigoEmpleado: str):
             profesiones=[]
         )
 
-        #Esta query busca las profesiones del empleado
+        # Esta query busca las profesiones del empleado
         query = ("SELECT profesion "
                  "FROM detalleempleadosprofesiones "
                  "WHERE empleado = %s"
@@ -38,11 +39,11 @@ def findById(codigoEmpleado: str):
         for codigoProfesion in resultado:
             listaProfesiones.append(codigoProfesion[0])
 
-        empleado.profesiones=listaProfesiones
-
+        empleado.profesiones = listaProfesiones
 
     Database.cerrarConexion(conexion)
     return empleado
+
 
 def findByCorreo(correoEmpleado: str):
     empleado = None
@@ -66,7 +67,7 @@ def findByCorreo(correoEmpleado: str):
             profesiones=[]
         )
 
-        #Esta query busca las profesiones del empleado
+        # Esta query busca las profesiones del empleado
         query = ("SELECT profesion "
                  "FROM detalleempleadosprofesiones "
                  "WHERE empleado = %s"
@@ -79,8 +80,7 @@ def findByCorreo(correoEmpleado: str):
         for codigoProfesion in resultado:
             listaProfesiones.append(codigoProfesion[0])
 
-        empleado.profesiones=listaProfesiones
-
+        empleado.profesiones = listaProfesiones
 
     Database.cerrarConexion(conexion)
     return empleado
@@ -91,10 +91,12 @@ def save(empleado: Empleado):
     cursor = conexion.cursor()
     cursor.execute(
         u"INSERT INTO empleados (codigoEmpleado, cedulaEmpleado, nombreEmpleado, apellidoEmpleado, direccionResidenciaEmpleado, telefonoEmpleado, correoEmpleado) VALUES (?,?,?,?,?,?,?)",
-        (empleado.codigoEmpleado, empleado.cedulaEmpleado, empleado.nombreEmpleado, empleado.apellidoEmpleado, empleado.direccionResidenciaEmpleado, empleado.telefonoEmpleado,
-        empleado.correoEmpleado))
+        (empleado.codigoEmpleado, empleado.cedulaEmpleado, empleado.nombreEmpleado, empleado.apellidoEmpleado,
+         empleado.direccionResidenciaEmpleado, empleado.telefonoEmpleado,
+         empleado.correoEmpleado))
     conexion.commit()
     Database.cerrarConexion(conexion)
+
 
 def update(empleado: Empleado):
     conexion = Database.abrirConexion()
@@ -120,6 +122,7 @@ def update(empleado: Empleado):
     conexion.commit()
     Database.cerrarConexion(conexion)
 
+
 def delete(codigoEmpleado: str):
     conexion = Database.abrirConexion()
     cursor = conexion.cursor()
@@ -127,14 +130,53 @@ def delete(codigoEmpleado: str):
     conexion.commit()
     Database.cerrarConexion(conexion)
 
+
 def findAll():
     conexion = Database.abrirConexion()
     cursor = conexion.cursor()
-    cursor.execute("SELECT e.codigoEmpleado, e.cedulaEmpleado, e.nombreEmpleado, e.apellidoEmpleado, e.direccionResidenciaEmpleado, e.telefonoEmpleado, e.correoEmpleado, pro.codigoProfesion "
-                               "FROM empleados e "
-                               "JOIN detalleempleadosprofesiones dep ON e.codigoEmpleado = dep.empleado "
-                               "JOIN profesiones pro ON dep.profesion = pro.codigoProfesion "
-                               )
+    cursor.execute(
+        "SELECT e.codigoEmpleado, e.cedulaEmpleado, e.nombreEmpleado, e.apellidoEmpleado, e.direccionResidenciaEmpleado, e.telefonoEmpleado, e.correoEmpleado, pro.codigoProfesion "
+        "FROM empleados e "
+        "JOIN detalleempleadosprofesiones dep ON e.codigoEmpleado = dep.empleado "
+        "JOIN profesiones pro ON dep.profesion = pro.codigoProfesion "
+        )
+    resultado = cursor.fetchall()
+
+    empleados_dict = {}
+
+    for datos in resultado:
+        codigoEmpleado = datos[0]  # El índice correcto para codigoEmpleado es 0
+        if codigoEmpleado not in empleados_dict:
+            empleado = Empleado(
+                codigoEmpleado=datos[0],  # Utiliza datos[0] para codigoEmpleado
+                cedulaEmpleado=datos[1],
+                nombreEmpleado=datos[2],
+                apellidoEmpleado=datos[3],
+                direccionResidenciaEmpleado=datos[4],
+                telefonoEmpleado=datos[5],
+                correoEmpleado=datos[6],
+                profesiones=[]
+            )
+            empleados_dict[codigoEmpleado] = empleado
+
+        empleados_dict[codigoEmpleado].profesiones.append(datos[7])
+
+    lista_clientes = list(empleados_dict.values())
+    return lista_clientes
+
+
+def findAllByCargo(nombrecargo: str):
+    conexion = Database.abrirConexion()
+    cursor = conexion.cursor()
+    cursor.execute(
+        "SELECT e.codigoEmpleado, e.cedulaEmpleado, e.nombreEmpleado, e.apellidoEmpleado, e.direccionResidenciaEmpleado, e.telefonoEmpleado, e.correoEmpleado, pro.codigoProfesion "
+        "FROM empleados e "
+        "JOIN detalleempleadosprofesiones dep ON e.codigoEmpleado = dep.empleado "
+        "JOIN profesiones pro ON dep.profesion = pro.codigoProfesion "
+        "JOIN contratos c ON e.codigoEmpleado = c.empleado "
+        "JOIN cargos ca ON c.cargo = ca.codigoCargo "
+        "WHERE ca.nombreCargo = ?", (nombrecargo,)
+        )
     resultado = cursor.fetchall()
 
     empleados_dict = {}

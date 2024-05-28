@@ -67,11 +67,11 @@ class MainWindowController(QMainWindow, Ui_MainWindow):
         self.stackedWidget.setCurrentIndex(index)
 
     def validar_tipo_usuario(self, usuario):
-        if usuario.nivel == NivelUsuario.PRINCIPAL:
+        if usuario.nivelUsuario == NivelUsuario.PRINCIPAL:
             self.bloquer_principal()
-        elif usuario.nivel == NivelUsuario.ESPORADICO:
+        elif usuario.nivelUsuario == NivelUsuario.ESPORADICO:
             self.bloquer_esporadicos()
-        elif usuario.nivel == NivelUsuario.PARAMETRICO:
+        elif usuario.nivelUsuario == NivelUsuario.PARAMETRICO:
             self.bloquer_parametricos()
 
     def bloquer_parametricos(self):

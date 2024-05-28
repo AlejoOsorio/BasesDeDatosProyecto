@@ -55,3 +55,6 @@ def obtenerEmpleado(codigoEmpleado):
 
 def obtenerListaEmpleados():
     return repository.EmpleadoRepositoryImpl.findAll()
+
+def obtenerListaDirectores():
+    return repository.EmpleadoRepositoryImpl.findAllByCargo("director")
