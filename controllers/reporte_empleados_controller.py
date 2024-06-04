@@ -18,9 +18,11 @@ class ReporteEmpleadosController(QtWidgets.QFrame, Ui_Frame):
             ruta = filedialog.askdirectory()
             empleados = obtenerListaEmpleados()
 
-            tupla_empleados = tuple((empleado.nombreEmpleado, empleado.cedulaEmpleado, empleado.telefonoEmpleado) for empleado in empleados)
+            headers = ["Codigo", "Cedula", "Nombre", "Apellido", "Direccion", "Telefono", "Correo"]
+            body = tuple((empleado.codigoEmpleado, empleado.cedulaEmpleado, empleado.nombreEmpleado,
+                          empleado.apellidoEmpleado, empleado.direccionResidenciaEmpleado, empleado.telefonoEmpleado,
+                          empleado.correoEmpleado) for empleado in empleados)
 
-            creador = Report(f"{ruta}/reporte-empleados.pdf", tupla_empleados)
+            Report(f"{ruta}/reporte-empleados.pdf", headers, body)
         except Exception as e:
             print(e)
-

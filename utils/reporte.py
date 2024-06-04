@@ -1,5 +1,4 @@
 from datetime import datetime
-from tkinter import filedialog
 
 from reportlab.lib import colors
 from reportlab.lib.colors import Color
@@ -9,8 +8,6 @@ from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import inch
 from reportlab.pdfgen import canvas
 from reportlab.platypus import Spacer, Paragraph, PageBreak, Table, TableStyle, Image, SimpleDocTemplate
-
-from model.Empleado import Empleado
 
 
 class FooterCanvas(canvas.Canvas):
@@ -47,10 +44,11 @@ class FooterCanvas(canvas.Canvas):
 
 
 class Report:
-    def __init__(self, path, employs):
+    def __init__(self, path, headers, content):
         self.path = path
         self.elements = []
-        self.employs = employs
+        self.content = content
+        self.headers = headers
 
         # colors - Azul turkeza 367AB3
         self.colorOhkaGreen0 = Color((45.0 / 255), (166.0 / 255), (153.0 / 255), 1)
@@ -106,26 +104,20 @@ class Report:
         Create the line items
         """
         d = []
-        text_data = ["ENombre", "ECedula", "ETelefono", "EGenero", "EFechaNto"]
+        header_table = self.headers
 
         font_size = 8
         centered = ParagraphStyle(name="centered", alignment=TA_CENTER)
-        for text in text_data:
+        for text in header_table:
             ptext = "<font size='%s'><b>%s</b></font>" % (font_size, text)
             titles_table = Paragraph(ptext, centered)
             d.append(titles_table)
         data = [d]
         formatted_line_data = []
 
-        align_style = [ParagraphStyle(name="01", alignment=TA_CENTER),
-                       ParagraphStyle(name="02", alignment=TA_CENTER),
-                       ParagraphStyle(name="03", alignment=TA_CENTER),
-                       ParagraphStyle(name="04", alignment=TA_CENTER),
-                       ParagraphStyle(name="05", alignment=TA_CENTER)]
+        align_style = [(ParagraphStyle(name=f"0{index}", alignment=TA_CENTER)) for index in range(1, len(data[0]) + 1)]
 
-        for employ in self.employs:
-            line_data = employ.nombre, employ.cedula, employ.telefono, employ.genero, employ.fechaNto
-            # data.append(employ)
+        for line_data in self.content:
             column_number = 0
             for item in line_data:
                 ptext = "<font size='%s'>%s</font>" % (font_size - 1, item)
@@ -135,16 +127,7 @@ class Report:
             data.append(formatted_line_data)
             formatted_line_data = []
 
-        # Row for total
-        """total_row = ["totals", "data", "per", "person", "ver"]
-        for item in total_row:
-            ptext = "<font size='%s'>%s</font>" % (font_size - 1, item)
-            p = Paragraph(ptext, align_style[1])
-            formatted_line_data.append(p)
-        data.append(formatted_line_data)"""
-
-        # print(data)
-        table = Table(data, colWidths=[200, 80, 80, 80, 80])
+        table = Table(data)
         t_style = TableStyle([
             # ('GRID',(0, 0), (-1, -1), 0.5, grey),
             ('ALIGN', (0, 0), (0, -1), 'LEFT'),
@@ -164,91 +147,3 @@ class Report:
 
         table.setStyle(t_style)
         self.elements.append(table)
-
-    def body_pages_branches(self):
-        ps_header_text = ParagraphStyle('Hed0', fontSize=12, alignment=TA_LEFT, borderWidth=3,
-                                        textColor=self.colorOhkaBlue0)
-        text = 'Informe Empleados'
-        paragraph_report_header = Paragraph(text, ps_header_text)
-        self.elements.append(paragraph_report_header)
-
-        spacer = Spacer(10, 22)
-        self.elements.append(spacer)
-        """
-        Create the line items
-        """
-        d = []
-        text_data = ["ENombre", "ECedula", "ETelefono", "EGenero", "EFechaNto"]
-
-        font_size = 8
-        centered = ParagraphStyle(name="centered", alignment=TA_CENTER)
-        for text in text_data:
-            ptext = "<font size='%s'><b>%s</b></font>" % (font_size, text)
-            titles_table = Paragraph(ptext, centered)
-            d.append(titles_table)
-        data = [d]
-        formatted_line_data = []
-
-        align_style = [ParagraphStyle(name="01", alignment=TA_CENTER),
-                       ParagraphStyle(name="02", alignment=TA_CENTER),
-                       ParagraphStyle(name="03", alignment=TA_CENTER),
-                       ParagraphStyle(name="04", alignment=TA_CENTER),
-                       ParagraphStyle(name="05", alignment=TA_CENTER)]
-
-        for employ in self.employs:
-            line_data = employ.nombre, employ.cedula, employ.telefono, employ.genero, employ.fechaNto
-            # data.append(employ)
-            column_number = 0
-            for item in line_data:
-                ptext = "<font size='%s'>%s</font>" % (font_size - 1, item)
-                p = Paragraph(ptext, align_style[column_number])
-                formatted_line_data.append(p)
-                column_number = column_number + 1
-            data.append(formatted_line_data)
-            formatted_line_data = []
-
-        # Row for total
-        """total_row = ["totals", "data", "per", "person", "ver"]
-        for item in total_row:
-            ptext = "<font size='%s'>%s</font>" % (font_size - 1, item)
-            p = Paragraph(ptext, align_style[1])
-            formatted_line_data.append(p)
-        data.append(formatted_line_data)"""
-
-        # print(data)
-        table = Table(data, colWidths=[200, 80, 80, 80, 80])
-        t_style = TableStyle([
-            # ('GRID',(0, 0), (-1, -1), 0.5, grey),
-            ('ALIGN', (0, 0), (0, -1), 'LEFT'),
-            # ('VALIGN', (0, 0), (-1, -1), 'TOP'),
-            ("ALIGN", (1, 0), (1, -1), 'RIGHT'),
-            ('LINEBELOW', (0, 0), (-1, -1), 1, self.colorOhkaBlue1),
-            ('BACKGROUND', (0, 0), (-1, 0), self.colorOhkaGreenLineas),
-            ('BACKGROUND', (0, -1), (-1, -1), self.colorOhkaBlue1),
-            # ('SPAN', (0, -1), (-2, -1)),
-        ])
-
-        for j in range(1, len(data)):
-            if j % 2 == 0:  # Filas pares
-                t_style.add('BACKGROUND', (0, j), (-1, j), colors.lightgrey)
-            else:  # Filas impares
-                t_style.add('BACKGROUND', (0, j), (-1, j), colors.white)
-
-        table.setStyle(t_style)
-        self.elements.append(table)
-
-
-if __name__ == '__main__':
-
-    ruta = filedialog.askdirectory()
-    empleados = []
-
-    for i in range(1, 100):
-        empleados.append(
-            Empleado(
-                i, f"empledo{i}", f"apellido{i}", i, f"direccion{i}", f"cargo{i}",
-                f"telefono{i}", ["p1", "p2"]
-            )
-        )
-
-    creador = Report(f"{ruta}/reporte-empleados.pdf", empleados)
