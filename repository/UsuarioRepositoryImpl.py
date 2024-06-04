@@ -18,10 +18,11 @@ def findById(codigoUsuario: str):
             nombreUsuario=resultado[1],
             claveUsuario=resultado[2],
             fechaCreacionUsuario=resultado[3],
-            nivelUsuario=resultado[4]
+            nivelUsuario=NivelUsuario(resultado[4])
         )
     Database.cerrarConexion(conexion)
     return usuario
+
 
 def findByNombreUsuario(nombreUsuario: str):
     usuario = None
@@ -38,19 +39,22 @@ def findByNombreUsuario(nombreUsuario: str):
             nombreUsuario=resultado[1],
             claveUsuario=resultado[2],
             fechaCreacionUsuario=resultado[3],
-            nivelUsuario=resultado[4]
+            nivelUsuario=NivelUsuario(resultado[4])
         )
     Database.cerrarConexion(conexion)
     return usuario
+
 
 def save(usuario: Usuario):
     conexion = Database.abrirConexion()
     cursor = conexion.cursor()
     cursor.execute(
         u"INSERT INTO usuarios (codigoUsuario, nombreUsuario, claveUsuario, fechaCreacionUsuario, nivelUsuario) VALUES (?,?,?,?,?)",
-        (usuario.codigoUsuario, usuario.nombreUsuario, usuario.claveUsuario, usuario.fechaCreacionUsuario, usuario.nivelUsuario))
+        (usuario.codigoUsuario, usuario.nombreUsuario, usuario.claveUsuario, usuario.fechaCreacionUsuario,
+         usuario.nivelUsuario))
     conexion.commit()
     Database.cerrarConexion(conexion)
+
 
 def update(usuario: Usuario):
     conexion = Database.abrirConexion()
@@ -72,12 +76,14 @@ def update(usuario: Usuario):
     conexion.commit()
     Database.cerrarConexion(conexion)
 
+
 def delete(codigoUsuario: str):
     conexion = Database.abrirConexion()
     cursor = conexion.cursor()
     cursor.execute(u"DELETE FROM usuarios WHERE codigoUsuario = ?", (codigoUsuario,))
     conexion.commit()
     Database.cerrarConexion(conexion)
+
 
 def findAll():
     conexion = Database.abrirConexion()
@@ -92,7 +98,8 @@ def findAll():
             nombreUsuario=datos[1],
             claveUsuario=datos[2],
             fechaCreacionUsuario=datos[3],
-            nivelUsuario=datos[4])
+            nivelUsuario=NivelUsuario(resultado[4])
+        )
         listaUsuarios.append(usuario)
 
     return listaUsuarios
