@@ -1,9 +1,9 @@
 import datetime
 
 import repository.ContratoRepositoryImpl
+import services.CargoServicioImpl as CargoServicioImpl
 import services.EmpleadoServicioImpl as EmpleadoServicioImpl
 import services.SucursalServicioImpl as SucursalServicioImpl
-import services.CargoServicioImpl as CargoServicioImpl
 from model.Contrato import Contrato
 
 

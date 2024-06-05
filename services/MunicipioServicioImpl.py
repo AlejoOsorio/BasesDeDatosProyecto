@@ -1,6 +1,6 @@
 import repository.MunicipioRepositoryImpl
-import services.PrioridadServicioImpl as PrioridadServicioImpl
 import services.DepartamentoServicioImpl as DepartamentoServicioImpl
+import services.PrioridadServicioImpl as PrioridadServicioImpl
 from model.Municipio import Municipio
 
 

@@ -1,4 +1,5 @@
 import mariadb
+
 import Database
 
 conexion = Database.abrirConexion()

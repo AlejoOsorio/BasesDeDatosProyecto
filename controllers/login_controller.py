@@ -18,8 +18,7 @@ class LogInController(QtWidgets.QFrame, Ui_Frame):
         password = self.tfPassword.text()
 
         try:
-            # usuario = login(nickname, password)
-            usuario = login("admin", "admin123")
+            usuario = login(nickname, password)
             MainWindowController(usuario).show()
             self.close()
         except Exception as e:

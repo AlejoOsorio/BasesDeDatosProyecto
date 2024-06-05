@@ -18,6 +18,10 @@ class UsuarioController(QtWidgets.QFrame, Ui_Frame):
         self.btnActualizarUsuario.clicked.connect(self.actualizar_usuario)
         self.btnEliminarUsuairo.clicked.connect(self.eliminar_usuario)
 
+    def showEvent(self, event):
+        super().showEvent(event)
+        self.llenar_combobox()
+
     def crear_usuario(self):
         codigo = self.tfCodigo.text().strip()
         user = self.tfUser.text().strip()
@@ -107,9 +111,10 @@ class UsuarioController(QtWidgets.QFrame, Ui_Frame):
 
     def llenar_combobox(self):
         try:
-            nivelesUsuario = [nivel.value for nivel in NivelUsuario]
+            self.cbNivelUsuario.clear()
+            niveles_usuario = [nivel.value for nivel in NivelUsuario]
 
-            for nivel in nivelesUsuario:
+            for nivel in niveles_usuario:
                 self.cbNivelUsuario.addItem(nivel)
         except Exception as e:
             print(e)

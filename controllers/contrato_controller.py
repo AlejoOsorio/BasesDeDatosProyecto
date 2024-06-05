@@ -17,8 +17,7 @@ class ContratoController(QtWidgets.QWidget, Ui_Frame):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
-        self.llenar_tabla()
-        self.llenar_combobox()
+        self.llenar_datos()
         self.btnCrearContrato.clicked.connect(self.crear_contrato)
         self.btnActualizarContrato.clicked.connect(self.actualizar_contrato)
         self.btnBuscarContrato.clicked.connect(self.buscar_contrato)
@@ -27,14 +26,20 @@ class ContratoController(QtWidgets.QWidget, Ui_Frame):
         self.dpFechaInicioContrato.setDate(QDate.currentDate())
         self.dpFechaTerminacionContrato.setDate(QDate.currentDate())
 
+    def showEvent(self, event):
+        super().showEvent(event)
+        self.llenar_datos()
+
+    def llenar_datos(self):
+        self.llenar_tabla()
+        self.llenar_combobox()
+
     def llenar_tabla(self):
         self.model = QStandardItemModel()
         self.model.setHorizontalHeaderLabels(['Código', 'Nombre'])
         empleados = obtenerListaEmpleados()
 
-        data = []
-        for empleado in empleados:
-            data.append([empleado.codigoEmpleado, empleado.nombreEmpleado])
+        data = [[empleado.codigoEmpleado, empleado.nombreEmpleado] for empleado in empleados]
 
         for row in data:
             items = [QStandardItem(field) for field in row]
@@ -50,31 +55,26 @@ class ContratoController(QtWidgets.QWidget, Ui_Frame):
         self.tvEmpleados.setSelectionBehavior(QTableView.SelectionBehavior.SelectRows)
 
     def capturar_dato_tabla(self):
+        item = None
         selection_model = self.tvEmpleados.selectionModel()
 
         if selection_model.hasSelection():
             indexes = selection_model.selectedIndexes()
-            item = self.model.itemFromIndex(indexes[0])
+            item = self.model.itemFromIndex(indexes[0]).text()
+        return item
 
     def llenar_combobox(self):
         try:
+            self.cbSucursales.clear()
+            self.cbCargos.clear()
             sucursales = obtenerListaSucursal()
             cargos = obtenerListaCargos()
 
-            self.cargos_codigos = {}
-            self.sucursal_codigos = {}
-
             for cargo in cargos:
-                self.cargos_codigos[cargo.nombreCargo] = cargo.codigoCargo
+                self.cbCargos.addItem(cargo.nombreCargo, cargo.codigoCargo)
 
             for sucursal in sucursales:
-                self.sucursal_codigos[sucursal.nombreSucursal] = sucursal.codigoSucursal
-
-            for key_sucursal in self.sucursal_codigos.keys():
-                self.cbSucursales.addItem(key_sucursal)
-
-            for key_cargo in self.cargos_codigos.keys():
-                self.cbCargos.addItem(key_cargo)
+                self.cbSucursales.addItem(sucursal.nombreSucursal, sucursal.codigoSucursal)
 
         except Exception as e:
             print(e)
@@ -83,17 +83,14 @@ class ContratoController(QtWidgets.QWidget, Ui_Frame):
         formato = "%d/%m/%Y"
 
         codigo = self.tfCodigo.text().strip()
-        fechaContrato = datetime.datetime.strptime(self.dpFechaContrato.text(), formato)
-        fechaInicioContrato = datetime.datetime.strptime(self.dpFechaInicioContrato.text(), formato)
-        fechaTerminacionContrato = datetime.datetime.strptime(self.dpFechaTerminacionContrato.text(), formato)
-        sucursal = self.sucursal_codigos[self.cbSucursales.currentText()]
-        cargo = self.cargos_codigos[self.cbCargos.currentText()]
-        empleado = self.tvEmpleados.selectionModel()
+        fecha_contrato = datetime.datetime.strptime(self.dpFechaContrato.text(), formato)
+        fecha_inicio_contrato = datetime.datetime.strptime(self.dpFechaInicioContrato.text(), formato)
+        fecha_terminacion_contrato = datetime.datetime.strptime(self.dpFechaTerminacionContrato.text(), formato)
+        sucursal = self.cbSucursales.itemData(self.cbSucursales.currentIndex())
+        cargo = self.cbCargos.itemData(self.cbCargos.currentIndex())
+        codigo_empleado = self.capturar_dato_tabla()
 
-        if empleado.hasSelection():
-            indexes = empleado.selectedIndexes()
-            codigoEmpleado = self.model.itemFromIndex(indexes[0]).text()
-        else:
+        if codigo_empleado is None:
             mensaje_error("Es necesario que seleccione un Empleado")
             return
         if codigo == "":
@@ -101,7 +98,7 @@ class ContratoController(QtWidgets.QWidget, Ui_Frame):
             return
 
         try:
-            crearContrato(codigo, fechaContrato, fechaInicioContrato, fechaTerminacionContrato, codigoEmpleado,
+            crearContrato(codigo, fecha_contrato, fecha_inicio_contrato, fecha_terminacion_contrato, codigo_empleado,
                           sucursal, cargo)
         except Exception as e:
             mensaje_error(e)
@@ -110,17 +107,14 @@ class ContratoController(QtWidgets.QWidget, Ui_Frame):
         formato = "%d/%m/%Y"
 
         codigo = self.tfCodigo.text().strip()
-        fechaContrato = datetime.datetime.strptime(self.dpFechaContrato.text(), formato)
-        fechaInicioContrato = datetime.datetime.strptime(self.dpFechaInicioContrato.text(), formato)
-        fechaTerminacionContrato = datetime.datetime.strptime(self.dpFechaTerminacionContrato.text(), formato)
-        sucursal = self.sucursal_codigos[self.cbSucursales.currentText()]
-        cargo = self.cargos_codigos[self.cbCargos.currentText()]
-        empleado = self.tvEmpleados.selectionModel()
+        fecha_contrato = datetime.datetime.strptime(self.dpFechaContrato.text(), formato)
+        fecha_inicio_contrato = datetime.datetime.strptime(self.dpFechaInicioContrato.text(), formato)
+        fecha_terminacion_contrato = datetime.datetime.strptime(self.dpFechaTerminacionContrato.text(), formato)
+        sucursal = self.cbSucursales.itemData(self.cbSucursales.currentIndex())
+        cargo = self.cbCargos.itemData(self.cbCargos.currentIndex())
+        codigo_empleado = self.capturar_dato_tabla()
 
-        if empleado.hasSelection():
-            indexes = empleado.selectedIndexes()
-            codigoEmpleado = self.model.itemFromIndex(indexes[0]).text()
-        else:
+        if codigo_empleado is None:
             mensaje_error("Es necesario que seleccione un Empleado")
             return
         if codigo == "":
@@ -128,7 +122,8 @@ class ContratoController(QtWidgets.QWidget, Ui_Frame):
             return
 
         try:
-            actualizarContrato(codigo, fechaContrato, fechaInicioContrato, fechaTerminacionContrato, codigoEmpleado,
+            actualizarContrato(codigo, fecha_contrato, fecha_inicio_contrato, fecha_terminacion_contrato,
+                               codigo_empleado,
                                sucursal, cargo)
         except Exception as e:
             mensaje_error(e)
@@ -161,8 +156,9 @@ class ContratoController(QtWidgets.QWidget, Ui_Frame):
         self.dpFechaContrato.setDate(QDate.fromString(str(contrato.fechaContrato), "yyyy-MM-dd"))
         self.dpFechaInicioContrato.setDate(QDate.fromString(str(contrato.fechaInicioContrato), "yyyy-MM-dd"))
         self.dpFechaTerminacionContrato.setDate(QDate.fromString(str(contrato.fechaTerminacionContrato), "yyyy-MM-dd"))
-        index_sucursal = self.cbSucursales.findText(self.obtener_llave_por_valor(self.sucursal_codigos, contrato.sucursal))
-        index_cargo = self.cbCargos.findText(self.obtener_llave_por_valor(self.cargos_codigos, contrato.cargo))
+        index_sucursal = self.cbSucursales.findData(contrato.sucursal)
+        index_cargo = self.cbCargos.findData(contrato.cargo)
+
         if index_sucursal != -1:
             self.cbSucursales.setCurrentIndex(index_sucursal)
         if index_cargo != -1:
@@ -174,9 +170,3 @@ class ContratoController(QtWidgets.QWidget, Ui_Frame):
             if self.model.data(index, Qt.ItemDataRole.DisplayRole) == valor_buscado:
                 self.tvEmpleados.selectRow(row)
                 break
-
-    def obtener_llave_por_valor(self, diccionario, valor):
-        for key, val in diccionario.items():
-            if val == valor:
-                return key
-        return None

@@ -20,32 +20,17 @@ class MainWindowController(QMainWindow, Ui_MainWindow):
     def __init__(self, usuario):
         super().__init__()
         self.setupUi(self)
+        self.frames = []
 
         self.validar_tipo_usuario(usuario)
+        self.cargar_frames()
 
-        self.empleado = EmpleadoController()
-        self.sucursal = SucursalController()
-        self.cargo = CargoController()
-        self.municipio = MunicipioController()
-        self.profesion = ProfesionController()
-        self.contrato = ContratoController()
-        self.departamento = DepartamentoController()
-        self.tipo_municipio = TipoMunicipioController()
-        self.usuario = UsuarioController()
-        self.filtroSucursales = ListarSucursalesController()
-        self.reporteEmpleados = ReporteEmpleadosController()
+    def cargar_frames(self):
+        self.frames = [SucursalController(), EmpleadoController(), CargoController(), MunicipioController(),
+                       ProfesionController(), ContratoController(), DepartamentoController(), TipoMunicipioController(),
+                       UsuarioController(), ListarSucursalesController(), ReporteEmpleadosController()]
 
-        self.stackedWidget.addWidget(self.sucursal)
-        self.stackedWidget.addWidget(self.empleado)
-        self.stackedWidget.addWidget(self.cargo)
-        self.stackedWidget.addWidget(self.municipio)
-        self.stackedWidget.addWidget(self.profesion)
-        self.stackedWidget.addWidget(self.contrato)
-        self.stackedWidget.addWidget(self.departamento)
-        self.stackedWidget.addWidget(self.tipo_municipio)
-        self.stackedWidget.addWidget(self.usuario)
-        self.stackedWidget.addWidget(self.filtroSucursales)
-        self.stackedWidget.addWidget(self.reporteEmpleados)
+        [self.stackedWidget.addWidget(frame) for frame in self.frames]
 
         self.actionVentana_Principal.triggered.connect(lambda: self.abrir_frame(0))
         self.actionSucursal.triggered.connect(lambda: self.abrir_frame(1))

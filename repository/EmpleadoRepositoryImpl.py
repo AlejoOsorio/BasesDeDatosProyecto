@@ -1,7 +1,5 @@
 import Database
-from model.Cargo import Cargo
 from model.Empleado import Empleado
-from model.Profesion import Profesion
 
 
 def findById(codigoEmpleado: str):

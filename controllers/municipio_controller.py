@@ -17,13 +17,16 @@ class MunicipioController(QtWidgets.QFrame, Ui_Frame):
         self.btnActualizarMunicipio.clicked.connect(self.actualizar_municipio)
         self.btnEliminarMunicipio.clicked.connect(self.eliminar_municipio)
 
-    def crear_municipio(self):
+    def showEvent(self, event):
+        super().showEvent(event)
+        self.llenar_combobox()
 
+    def crear_municipio(self):
         codigo = self.tfCodigo.text().strip()
         nombre = self.tfNombre.text().strip()
         poblacion = self.tfPoblacion.text().strip()
-        tipoMunicipio = self.tipoMunicipiosCodigos[self.cbTipoMunicipio.currentText()]
-        departamento = self.departamentoCodigos[self.cbDepartamento.currentText()]
+        tipo_municipio = self.cbTipoMunicipio.itemData(self.cbTipoMunicipio.currentIndex())
+        departamento = self.cbDepartamento.itemData(self.cbDepartamento.currentIndex())
 
         if codigo == '':
             mensaje_error("El campo codigo es requerido")
@@ -39,7 +42,7 @@ class MunicipioController(QtWidgets.QFrame, Ui_Frame):
             return
 
         try:
-            crearMunicipio(codigo, nombre, tipoMunicipio, departamento, poblacion)
+            crearMunicipio(codigo, nombre, tipo_municipio, departamento, poblacion)
             mensaje_informacion("Municipio creado correctamente")
             self.limpiar_campos()
         except Exception as e:
@@ -63,8 +66,8 @@ class MunicipioController(QtWidgets.QFrame, Ui_Frame):
         codiogo = self.tfCodigo.text().strip()
         nombre = self.tfNombre.text().strip()
         poblacion = self.tfPoblacion.text().strip()
-        tipoMunicipio = self.tipoMunicipiosCodigos[self.cbTipoMunicipio.currentText()]
-        departamento = self.departamentoCodigos[self.cbDepartamento.currentText()]
+        tipo_municipio = self.cbTipoMunicipio.itemData(self.cbTipoMunicipio.currentIndex())
+        departamento = self.cbDepartamento.itemData(self.cbDepartamento.currentIndex())
 
         if codiogo == '':
             mensaje_error("El campo codigo es requerido")
@@ -80,7 +83,7 @@ class MunicipioController(QtWidgets.QFrame, Ui_Frame):
             return
 
         try:
-            actualizarMunicipio(codiogo, nombre, tipoMunicipio, departamento, poblacion)
+            actualizarMunicipio(codiogo, nombre, tipo_municipio, departamento, poblacion)
             mensaje_informacion("Municipio actualizado correctamente")
             self.limpiar_campos()
         except Exception as e:
@@ -99,6 +102,7 @@ class MunicipioController(QtWidgets.QFrame, Ui_Frame):
             self.limpiar_campos()
         except Exception as e:
             mensaje_error(str(e))
+
     def limpiar_campos(self):
         self.tfCodigo.setText("")
         self.tfNombre.setText("")
@@ -108,36 +112,25 @@ class MunicipioController(QtWidgets.QFrame, Ui_Frame):
         self.tfCodigo.setText(municipio.codigoMunicipio)
         self.tfNombre.setText(municipio.nombreMunicipio)
         self.tfPoblacion.setText(str(municipio.poblacionMunicipio))
-        index_tipo_municipio = self.cbTipoMunicipio.findText(
-            self.obtener_llave_por_valor(self.tipoMunicipiosCodigos, municipio.prioridad))
-        index_departamento = self.cbDepartamento.findText(self.obtener_llave_por_valor(self.departamentoCodigos, municipio.departamento))
+        index_tipo_municipio = self.cbTipoMunicipio.findData(municipio.prioridad)
+        index_departamento = self.cbDepartamento.findData(municipio.departamento)
+
         if index_tipo_municipio != -1:
-            self.cbTipoMunicipio.setCurrentIndex(index_departamento)
+            self.cbTipoMunicipio.setCurrentIndex(index_tipo_municipio)
         if index_departamento != -1:
             self.cbDepartamento.setCurrentIndex(index_departamento)
 
     def llenar_combobox(self):
         try:
-            tipoMunicipios = obtenerListaPrioridades()
+            self.cbTipoMunicipio.clear()
+            self.cbDepartamento.clear()
+            tipo_municipios = obtenerListaPrioridades()
             departamentos = obtenerListaDepartamentos()
-            self.tipoMunicipiosCodigos = {}
-            self.departamentoCodigos = {}
 
-            for tipoMunicipio in tipoMunicipios:
-                self.tipoMunicipiosCodigos[tipoMunicipio.nombrePrioridad] = tipoMunicipio.codigoPrioridad
+            for tipo_municipio in tipo_municipios:
+                self.cbTipoMunicipio.addItem(tipo_municipio.nombrePrioridad, tipo_municipio.codigoPrioridad)
+
             for departamento in departamentos:
-                self.departamentoCodigos[departamento.nombreDepartamento] = departamento.codigoDepartamento
-
-            for key_tipo_municipio in self.tipoMunicipiosCodigos.keys():
-                self.cbTipoMunicipio.addItem(key_tipo_municipio)
-
-            for key_departamento in self.departamentoCodigos.keys():
-                self.cbDepartamento.addItem(key_departamento)
+                self.cbDepartamento.addItem(departamento.nombreDepartamento, departamento.codigoDepartamento)
         except Exception as e:
             print(e)
-
-    def obtener_llave_por_valor(self, diccionario, valor):
-        for key, val in diccionario.items():
-            if val == valor:
-                return key
-        return None

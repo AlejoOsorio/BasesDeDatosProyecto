@@ -16,13 +16,17 @@ class SucursalController(QtWidgets.QFrame, Ui_Frame):
         self.btnActualizarSucursal.clicked.connect(self.actualizar_sucursal)
         self.btnEliminarSucursal.clicked.connect(self.eliminar_sucursal)
 
+    def showEvent(self, event):
+        super().showEvent(event)
+        self.llenar_combobox()
+
     def crear_sucursal(self):
         codigo = self.tfCodigo.text().strip()
         nombre = self.tfNombre.text().strip()
         presupuesto = self.tfPresupuestoAnual.text().strip()
         direccion = self.tfDireccion.text().strip()
         telefono = self.tfTelefono.text().strip()
-        municipio = self.municipioCodigos[self.cbMunicipio.currentText()]
+        municipio = self.cbMunicipio.itemData(self.cbMunicipio.currentIndex())
 
         if codigo == '':
             mensaje_error("El campo codigo es requerido")
@@ -60,14 +64,13 @@ class SucursalController(QtWidgets.QFrame, Ui_Frame):
         except Exception as e:
             mensaje_error(str(e))
 
-
     def actualizar_sucursal(self):
         codigo = self.tfCodigo.text().strip()
         nombre = self.tfNombre.text().strip()
         presupuesto = self.tfPresupuestoAnual.text().strip()
         direccion = self.tfDireccion.text().strip()
         telefono = self.tfTelefono.text().strip()
-        municipio = self.municipioCodigos[self.cbMunicipio.currentText()]
+        municipio = self.cbMunicipio.itemData(self.cbMunicipio.currentIndex())
 
         if codigo == '':
             mensaje_error("El campo codigo es requerido")
@@ -118,25 +121,16 @@ class SucursalController(QtWidgets.QFrame, Ui_Frame):
         self.tfPresupuestoAnual.setText(str(sucursal.presupuestoAnual))
         self.tfDireccion.setText(sucursal.direccionSucursal)
         self.tfTelefono.setText(sucursal.telefono)
-        index_municipio = self.cbMunicipio.findText(
-            self.obtener_llave_por_valor(self.municipioCodigos, sucursal.municipio))
+        index_municipio = self.cbMunicipio.findData(sucursal.municipio)
         if index_municipio != -1:
             self.cbMunicipio.setCurrentIndex(index_municipio)
+
     def llenar_combobox(self):
         try:
+            self.cbMunicipio.clear()
             municipios = obtenerListaMunicipios()
-            self.municipioCodigos = {}
 
             for municipio in municipios:
-                self.municipioCodigos[municipio.nombreMunicipio] = municipio.codigoMunicipio
-
-            for key_tipo_municipio in self.municipioCodigos.keys():
-                self.cbMunicipio.addItem(key_tipo_municipio)
+                self.cbMunicipio.addItem(municipio.nombreMunicipio, municipio.codigoMunicipio)
         except Exception as e:
             print(e)
-
-    def obtener_llave_por_valor(self, diccionario, valor):
-        for key, val in diccionario.items():
-            if val == valor:
-                return key
-        return None

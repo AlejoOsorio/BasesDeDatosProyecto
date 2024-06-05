@@ -19,6 +19,10 @@ class EmpleadoController(QtWidgets.QFrame, Ui_Frame):
         self.btnActualizarEmpleado.clicked.connect(self.actualizar_empleado)
         self.btnEliminarEmpleado.clicked.connect(self.eliminar_empleado)
 
+    def showEvent(self, event):
+        super().showEvent(event)
+        self.llenar_tabla()
+
     def crear_empleado(self):
         codigo = self.tfCodigo.text().strip()
         cedula = self.tfCedula.text().strip()
@@ -52,6 +56,7 @@ class EmpleadoController(QtWidgets.QFrame, Ui_Frame):
             return
         if profesion is None:
             mensaje_error("Seleccione una profesión")
+            return
 
         try:
             crearEmpleado(codigo, cedula, nombre, apellidos, direccion, telefono, email)
@@ -72,7 +77,6 @@ class EmpleadoController(QtWidgets.QFrame, Ui_Frame):
             mensaje_informacion("Empleado encontrado exitosamente")
         except Exception as e:
             mensaje_error(str(e))
-
 
     def actualizar_empleado(self):
         codigo = self.tfCodigo.text().strip()

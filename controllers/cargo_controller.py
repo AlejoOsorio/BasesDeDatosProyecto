@@ -1,6 +1,5 @@
 from PyQt6 import QtWidgets
 
-from model.Cargo import Cargo
 from services.CargoServicioImpl import crearCargo, actualizarCargo, obtenerCargo, eliminarCargo
 from utils.utils_qt import mensaje_error, mensaje_informacion
 from views.python_files.frame_cargo import Ui_Frame
