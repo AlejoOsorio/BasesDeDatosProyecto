@@ -123,6 +123,7 @@ QLineEdit:focus {
      <string>File</string>
     </property>
     <addaction name="actionVentana_Principal"/>
+    <addaction name="actionLogout"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEntidades"/>
@@ -215,6 +216,11 @@ QLineEdit:focus {
   <action name="actionVentana_Principal">
    <property name="text">
     <string>Ventana Principal</string>
+   </property>
+  </action>
+  <action name="actionLogout">
+   <property name="text">
+    <string>Logout</string>
    </property>
   </action>
  </widget>

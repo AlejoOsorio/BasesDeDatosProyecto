@@ -9,6 +9,7 @@ from views.python_files.frame_login_usuario import Ui_Frame
 class LogInController(QtWidgets.QFrame, Ui_Frame):
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.ventana = None
         self.setupUi(self)
 
         self.btnIniciarSesion.clicked.connect(self.iniciar_sesion)
@@ -19,7 +20,8 @@ class LogInController(QtWidgets.QFrame, Ui_Frame):
 
         try:
             usuario = login(nickname, password)
-            MainWindowController(usuario).show()
+            self.ventana = MainWindowController(usuario)
+            self.ventana.show()
             self.close()
         except Exception as e:
             print(e)
