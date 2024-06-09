@@ -44,23 +44,19 @@ class FooterCanvas(canvas.Canvas):
 
 
 class Report:
-    def __init__(self, path, headers, content):
+    def __init__(self, path, headers, content, title_pages):
         self.path = path
         self.elements = []
         self.content = content
         self.headers = headers
 
-        # colors - Azul turkeza 367AB3
-        self.colorOhkaGreen0 = Color((45.0 / 255), (166.0 / 255), (153.0 / 255), 1)
-        self.colorOhkaGreen1 = Color((182.0 / 255), (227.0 / 255), (166.0 / 255), 1)
-        self.colorOhkaGreen2 = Color((140.0 / 255), (222.0 / 255), (192.0 / 255), 1)
         # self.colorOhkaGreen2 = Color((140.0/255), (222.0/255), (192.0/255), 1)
         self.colorOhkaBlue0 = Color((54.0 / 255), (122.0 / 255), (179.0 / 255), 1)
         self.colorOhkaBlue1 = Color((122.0 / 255), (180.0 / 255), (225.0 / 255), 1)
         self.colorOhkaGreenLineas = Color((50.0 / 255), (140.0 / 255), (140.0 / 255), 1)
 
         self.first_page()
-        self.body_pages_employs()
+        self.body_pages_employs(title_pages)
         self.doc = SimpleDocTemplate(self.path, pagesize=LETTER)
         self.doc.multiBuild(self.elements, canvasmaker=FooterCanvas)
 
@@ -91,10 +87,10 @@ class Report:
         self.elements.append(paragraph_report_summary)
         self.elements.append(PageBreak())
 
-    def body_pages_employs(self):
+    def body_pages_employs(self, title_pages):
         ps_header_text = ParagraphStyle('Hed0', fontSize=12, alignment=TA_LEFT, borderWidth=3,
                                         textColor=self.colorOhkaBlue0)
-        text = 'Informe Empleados'
+        text = title_pages
         paragraph_report_header = Paragraph(text, ps_header_text)
         self.elements.append(paragraph_report_header)
 
@@ -129,14 +125,11 @@ class Report:
 
         table = Table(data)
         t_style = TableStyle([
-            # ('GRID',(0, 0), (-1, -1), 0.5, grey),
             ('ALIGN', (0, 0), (0, -1), 'LEFT'),
-            # ('VALIGN', (0, 0), (-1, -1), 'TOP'),
             ("ALIGN", (1, 0), (1, -1), 'RIGHT'),
             ('LINEBELOW', (0, 0), (-1, -1), 1, self.colorOhkaBlue1),
             ('BACKGROUND', (0, 0), (-1, 0), self.colorOhkaGreenLineas),
             ('BACKGROUND', (0, -1), (-1, -1), self.colorOhkaBlue1),
-            # ('SPAN', (0, -1), (-2, -1)),
         ])
 
         for j in range(1, len(data)):

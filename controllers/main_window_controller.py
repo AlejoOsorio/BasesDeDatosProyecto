@@ -20,15 +20,17 @@ class MainWindowController(QMainWindow, Ui_MainWindow):
     def __init__(self, usuario):
         super().__init__()
         self.setupUi(self)
+        self.usuario = usuario
         self.frames = []
 
-        self.validar_tipo_usuario(usuario)
+        self.validar_tipo_usuario(self.usuario)
         self.cargar_frames()
 
     def cargar_frames(self):
         self.frames = [SucursalController(), EmpleadoController(), CargoController(), MunicipioController(),
                        ProfesionController(), ContratoController(), DepartamentoController(), TipoMunicipioController(),
-                       UsuarioController(), ListarSucursalesController(), ReporteEmpleadosController()]
+                       UsuarioController(), ListarSucursalesController(self.usuario.nivelUsuario),
+                       ReporteEmpleadosController(self.usuario.nivelUsuario)]
 
         [self.stackedWidget.addWidget(frame) for frame in self.frames]
 
@@ -59,6 +61,9 @@ class MainWindowController(QMainWindow, Ui_MainWindow):
         elif usuario.nivelUsuario == NivelUsuario.PARAMETRICO:
             self.bloquer_parametricos()
 
+    def bloquer_principal(self):
+        pass
+
     def bloquer_parametricos(self):
         self.actionDepartamento.setDisabled(True)
         self.actionTipo_Municipio.setDisabled(True)
@@ -67,12 +72,9 @@ class MainWindowController(QMainWindow, Ui_MainWindow):
         self.actionCargo.setDisabled(True)
         self.actionProfesion.setDisabled(True)
         self.actionEmpleado.setDisabled(True)
+        self.actionContrato.setDisabled(True)
+        self.actionUsuario.setDisabled(True)
+        self.actionBitacora.setDisabled(True)
 
     def bloquer_esporadicos(self):
-        self.actionDepartamento.setDisabled(True)
-        self.actionTipo_Municipio.setDisabled(True)
-        self.actionMunicipio.setDisabled(True)
-        self.actionSucursal.setDisabled(True)
-
-    def bloquer_principal(self):
-        pass
+        self.bloquer_parametricos()

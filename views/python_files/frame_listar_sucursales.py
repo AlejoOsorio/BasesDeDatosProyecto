@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_Frame(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
-        Frame.resize(400, 300)
+        Frame.resize(780, 501)
         self.verticalLayout = QtWidgets.QVBoxLayout(Frame)
         self.verticalLayout.setObjectName("verticalLayout")
         self.label = QtWidgets.QLabel(parent=Frame)
@@ -25,6 +25,39 @@ class Ui_Frame(object):
 "}")
         self.label.setObjectName("label")
         self.verticalLayout.addWidget(self.label)
+        self.label_2 = QtWidgets.QLabel(parent=Frame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
+        self.label_2.setSizePolicy(sizePolicy)
+        self.label_2.setMaximumSize(QtCore.QSize(16777215, 100))
+        self.label_2.setStyleSheet("QLabel {\n"
+"    padding: 10px;\n"
+"    font-weight: bold;\n"
+"    qproperty-alignment: AlignCenter;\n"
+"}")
+        self.label_2.setObjectName("label_2")
+        self.verticalLayout.addWidget(self.label_2)
+        self.twEmpleados = QtWidgets.QTableWidget(parent=Frame)
+        self.twEmpleados.setStyleSheet("QTableWidget {\n"
+" margin: 16px\n"
+"}")
+        self.twEmpleados.setObjectName("twEmpleados")
+        self.twEmpleados.setColumnCount(0)
+        self.twEmpleados.setRowCount(0)
+        self.verticalLayout.addWidget(self.twEmpleados)
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.btnVistaPrevia = QtWidgets.QPushButton(parent=Frame)
+        self.btnVistaPrevia.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.btnVistaPrevia.setObjectName("btnVistaPrevia")
+        self.horizontalLayout.addWidget(self.btnVistaPrevia)
+        self.btnGenerarInforme = QtWidgets.QPushButton(parent=Frame)
+        self.btnGenerarInforme.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.btnGenerarInforme.setObjectName("btnGenerarInforme")
+        self.horizontalLayout.addWidget(self.btnGenerarInforme)
+        self.verticalLayout.addLayout(self.horizontalLayout)
 
         self.retranslateUi(Frame)
         QtCore.QMetaObject.connectSlotsByName(Frame)
@@ -33,3 +66,6 @@ class Ui_Frame(object):
         _translate = QtCore.QCoreApplication.translate
         Frame.setWindowTitle(_translate("Frame", "Frame"))
         self.label.setText(_translate("Frame", "Listar Sucursales"))
+        self.label_2.setText(_translate("Frame", "Seleccione los datos que quiere de su reporte"))
+        self.btnVistaPrevia.setText(_translate("Frame", "Vista Previa Informe"))
+        self.btnGenerarInforme.setText(_translate("Frame", "Generar Informe"))
