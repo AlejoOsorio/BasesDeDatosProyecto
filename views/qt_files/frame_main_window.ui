@@ -115,7 +115,6 @@ QLineEdit:focus {
     <property name="title">
      <string>Ayudas</string>
     </property>
-    <addaction name="actionAyudas_de_la_aplicaci_n"/>
     <addaction name="actionAcerca_de"/>
    </widget>
    <widget class="QMenu" name="menuFile">

@@ -115,7 +115,6 @@ class Ui_MainWindow(object):
         self.menuEntidades.addAction(self.actionProfesion)
         self.menuEntidades.addAction(self.actionEmpleado)
         self.menuTransacciones.addAction(self.actionContrato)
-        self.menuAyudas.addAction(self.actionAyudas_de_la_aplicaci_n)
         self.menuAyudas.addAction(self.actionAcerca_de)
         self.menuFile.addAction(self.actionVentana_Principal)
         self.menuFile.addAction(self.actionLogout)

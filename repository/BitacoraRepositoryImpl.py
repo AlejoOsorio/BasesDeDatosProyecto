@@ -24,6 +24,7 @@ def findById(codigoBitacora: str):
     Database.cerrarConexion(conexion)
     return bitacora
 
+
 def findByNumeroIngreso(numeroIngreso: str):
     bitacora = None
 
@@ -46,6 +47,7 @@ def findByNumeroIngreso(numeroIngreso: str):
     Database.cerrarConexion(conexion)
     return bitacora
 
+
 def save(bitacora: Bitacora):
     conexion = Database.abrirConexion()
     cursor = conexion.cursor()
@@ -53,13 +55,39 @@ def save(bitacora: Bitacora):
     query = "SELECT COUNT(*) FROM bitacoras"
     cursor.execute(query)
 
-    cantidad = cursor.fetchone()[0]+1
+    cantidad = cursor.fetchone()[0] + 1
 
     cursor.execute(
         u"INSERT INTO bitacoras (codigoBitacora, numeroIngreso, fechaIngreso, horaIngreso, horaSalida, usuario, fechaSalida) VALUES (?,?,?,?,?,?,?)",
-        (bitacora.codigoBitacora, cantidad, bitacora.fechaIngreso, bitacora.horaIngreso, bitacora.horaSalida, bitacora.usuario, bitacora.fechaSalida ))
+        (bitacora.codigoBitacora, cantidad, bitacora.fechaIngreso, bitacora.horaIngreso, bitacora.horaSalida,
+         bitacora.usuario, bitacora.fechaSalida))
     conexion.commit()
     Database.cerrarConexion(conexion)
+
+
+def update(bitacora: Bitacora):
+    conexion = Database.abrirConexion()
+    cursor = conexion.cursor()
+
+    query = """
+    UPDATE bitacoras 
+    SET fechaIngreso = ?, 
+        horaIngreso = ?, 
+        horaSalida = ?, 
+        usuario = ?, 
+        fechaSalida = ?
+    WHERE codigoBitacora = ?
+    """
+
+    cursor.execute(
+        query,
+        (bitacora.fechaIngreso, bitacora.horaIngreso, bitacora.horaSalida,
+         bitacora.usuario, bitacora.fechaSalida, bitacora.codigoBitacora)
+    )
+
+    conexion.commit()
+    Database.cerrarConexion(conexion)
+
 
 def findAll():
     conexion = Database.abrirConexion()
@@ -81,3 +109,11 @@ def findAll():
         listaBitacoras.append(bitacora)
 
     return listaBitacoras
+
+def sizeTable():
+    conexion = Database.abrirConexion()
+    cursor = conexion.cursor()
+    cursor.execute("SELECT COUNT(*) FROM bitacoras")
+    longitud = cursor.fetchone()[0]
+    conexion.close()
+    return longitud

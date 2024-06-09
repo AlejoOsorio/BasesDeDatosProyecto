@@ -1,5 +1,8 @@
+from datetime import date, datetime
+
 from PyQt6.QtWidgets import QMainWindow
 
+from controllers.bitacora_controller import BitacoraController
 from controllers.cargo_controller import CargoController
 from controllers.contrato_controller import ContratoController
 from controllers.departamento_controller import DepartamentoController
@@ -12,6 +15,7 @@ from controllers.sucursal_controller import SucursalController
 from controllers.tipo_municipio_controller import TipoMunicipioController
 from controllers.usuario_controller import UsuarioController
 from model.NivelUsuario import NivelUsuario
+from services.BitacoraServicioImpl import crearBitacora, generarCodigo, salirBitacora
 from utils.utils_qt import mensaje_hora, mensaje_acerca_de, abrir_calculadora
 from views.python_files.frame_main_window import Ui_MainWindow
 
@@ -25,13 +29,18 @@ class MainWindowController(QMainWindow, Ui_MainWindow):
         self.frames = []
 
         self.validar_tipo_usuario(self.usuario)
+        self.registrar_inicio()
         self.cargar_frames()
+
+    def closeEvent(self, event):
+        super().closeEvent(event)
+        self.registrar_salida()
 
     def cargar_frames(self):
         self.frames = [SucursalController(), EmpleadoController(), CargoController(), MunicipioController(),
                        ProfesionController(), ContratoController(), DepartamentoController(), TipoMunicipioController(),
                        UsuarioController(), ListarSucursalesController(self.usuario.nivelUsuario),
-                       ReporteEmpleadosController(self.usuario.nivelUsuario)]
+                       ReporteEmpleadosController(self.usuario.nivelUsuario), BitacoraController()]
 
         [self.stackedWidget.addWidget(frame) for frame in self.frames]
 
@@ -47,6 +56,7 @@ class MainWindowController(QMainWindow, Ui_MainWindow):
         self.actionUsuario.triggered.connect(lambda: self.abrir_frame(9))
         self.actionListar_sucursales.triggered.connect(lambda: self.abrir_frame(10))
         self.actionInforme_empleados.triggered.connect(lambda: self.abrir_frame(11))
+        self.actionBitacora.triggered.connect(lambda: self.abrir_frame(12))
         self.actionLogout.triggered.connect(self.logout)
         self.actionFecha_y_hora_actual.triggered.connect(mensaje_hora)
         self.actionAcerca_de.triggered.connect(mensaje_acerca_de)
@@ -86,3 +96,13 @@ class MainWindowController(QMainWindow, Ui_MainWindow):
         self.login = LogInController()
         self.close()
         self.login.show()
+
+    def registrar_inicio(self):
+        self.codigo_bitacora = generarCodigo()
+        fecha_ingreso = date.today()
+        hora_ingreso = datetime.now().time()
+        codigo_usuario = self.usuario.codigoUsuario
+        crearBitacora(self.codigo_bitacora, fecha_ingreso, hora_ingreso, codigo_usuario)
+
+    def registrar_salida(self):
+        salirBitacora(self.codigo_bitacora)
