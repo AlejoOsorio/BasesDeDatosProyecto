@@ -1,8 +1,6 @@
 import mariadb
 import sys
 
-import mariadb
-
 
 def abrirConexion():
     try:
